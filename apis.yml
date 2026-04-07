@@ -7,9 +7,8 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
-  - Legal
   - eDiscovery
+  - Legal
 url: >-
   https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/apis.yml
 created: '2025-03-01'
@@ -23,8 +22,7 @@ apis:
       endpoint for getting active custodian details. To view the Legal Hold API,
       click Legal Hold REST API Reference.
     humanURL: https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm
