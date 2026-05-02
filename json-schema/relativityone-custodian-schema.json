@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/relativityone/main/json-schema/relativityone-custodian-schema.json",
+  "title": "Legal Hold Custodian",
+  "description": "A custodian assigned to a legal hold project in RelativityOne, representing an individual whose data is subject to preservation.",
+  "type": "object",
+  "required": ["artifactId", "emailAddress"],
+  "properties": {
+    "artifactId": {
+      "type": "integer",
+      "description": "The unique artifact ID of the custodian."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name of the custodian."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name of the custodian."
+    },
+    "emailAddress": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the custodian."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Optional employee identifier from the HR system."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current hold status of the custodian.",
+      "enum": ["Active", "Released", "Pending"]
+    }
+  }
+}

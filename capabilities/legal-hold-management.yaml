@@ -1,0 +1,331 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RelativityOne Legal Hold Management"
+  description: >-
+    Unified legal hold management capability for RelativityOne. Combines legal hold
+    project management, custodian tracking, data preservation workflows, HR entity
+    integration, and communication management into a single workflow-oriented API.
+    Used by legal operations teams, compliance officers, and eDiscovery professionals
+    to manage litigation holds across Microsoft 365 and Google Workspace data sources.
+  tags:
+    - Legal Hold
+    - eDiscovery
+    - Compliance
+    - Litigation
+    - Relativity
+    - Legal Operations
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RELATIVITY_BEARER_TOKEN: RELATIVITY_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: relativity-legal-hold
+      location: ./shared/legal-hold.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: legal-hold-management-api
+      description: "Unified REST API for RelativityOne legal hold management workflows."
+      resources:
+        - path: /v1/projects
+          name: projects
+          description: "Legal hold project management."
+          operations:
+            - method: GET
+              name: list-projects
+              description: "List all legal hold projects in a workspace."
+              call: "relativity-legal-hold.list-legal-hold-projects"
+              with:
+                workspaceId: "rest.workspaceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-project
+              description: "Create a new legal hold project."
+              call: "relativity-legal-hold.create-legal-hold-project"
+              with:
+                workspaceId: "rest.workspaceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{projectId}
+          name: project
+          description: "Individual legal hold project operations."
+          operations:
+            - method: GET
+              name: get-project
+              description: "Get a specific legal hold project by ID."
+              call: "relativity-legal-hold.get-legal-hold-project"
+              with:
+                workspaceId: "rest.workspaceId"
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{projectId}/custodians
+          name: custodians
+          description: "Custodian management for legal hold projects."
+          operations:
+            - method: GET
+              name: list-custodians
+              description: "List all custodians in a legal hold project."
+              call: "relativity-legal-hold.list-project-custodians"
+              with:
+                workspaceId: "rest.workspaceId"
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: add-custodian
+              description: "Add a custodian to a legal hold project."
+              call: "relativity-legal-hold.add-custodian-to-project"
+              with:
+                workspaceId: "rest.workspaceId"
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/active-custodians
+          name: active-custodians
+          description: "Active custodian summary across all projects."
+          operations:
+            - method: GET
+              name: get-active-custodians
+              description: "Get all custodians currently on hold."
+              call: "relativity-legal-hold.get-active-custodian-summary"
+              with:
+                workspaceId: "rest.workspaceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/entities
+          name: entities
+          description: "HR entity management for legal hold integration."
+          operations:
+            - method: POST
+              name: create-entity
+              description: "Create an HR entity for legal hold workflows."
+              call: "relativity-legal-hold.create-entity"
+              with:
+                workspaceId: "rest.workspaceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/entities/{entityId}
+          name: entity
+          description: "Individual entity operations."
+          operations:
+            - method: PUT
+              name: update-entity-status
+              description: "Update the employment status of an entity."
+              call: "relativity-legal-hold.update-entity-status"
+              with:
+                workspaceId: "rest.workspaceId"
+                entityId: "rest.entityId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{projectId}/preserve
+          name: preservation
+          description: "Data preservation workflows."
+          operations:
+            - method: POST
+              name: preserve-data
+              description: "Preserve custodian data in M365 and Google Workspace."
+              call: "relativity-legal-hold.preserve-custodian-data"
+              with:
+                workspaceId: "rest.workspaceId"
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{projectId}/release
+          name: release
+          description: "Custodian release from legal hold."
+          operations:
+            - method: POST
+              name: release-custodians
+              description: "Release custodians from a legal hold project."
+              call: "relativity-legal-hold.release-custodian-from-project"
+              with:
+                workspaceId: "rest.workspaceId"
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{projectId}/communications
+          name: communications
+          description: "Legal hold communications and notifications."
+          operations:
+            - method: POST
+              name: create-communication
+              description: "Create a legal hold communication."
+              call: "relativity-legal-hold.create-legal-hold-communication"
+              with:
+                workspaceId: "rest.workspaceId"
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/tasks
+          name: tasks
+          description: "Legal hold task management."
+          operations:
+            - method: POST
+              name: create-task
+              description: "Create a new legal hold task."
+              call: "relativity-legal-hold.create-legal-hold-task"
+              with:
+                workspaceId: "rest.workspaceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: legal-hold-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted legal hold management in RelativityOne."
+      tools:
+        - name: list-legal-hold-projects
+          description: "List all legal hold projects in a workspace."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "relativity-legal-hold.list-legal-hold-projects"
+          with:
+            workspaceId: "tools.workspaceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-legal-hold-project
+          description: "Create a new legal hold project for litigation matter management."
+          hints:
+            readOnly: false
+          call: "relativity-legal-hold.create-legal-hold-project"
+          with:
+            workspaceId: "tools.workspaceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-legal-hold-project
+          description: "Get details of a specific legal hold project."
+          hints:
+            readOnly: true
+          call: "relativity-legal-hold.get-legal-hold-project"
+          with:
+            workspaceId: "tools.workspaceId"
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-project-custodians
+          description: "List all custodians assigned to a legal hold project."
+          hints:
+            readOnly: true
+          call: "relativity-legal-hold.list-project-custodians"
+          with:
+            workspaceId: "tools.workspaceId"
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: add-custodian-to-project
+          description: "Add an employee as a custodian to a legal hold project."
+          hints:
+            readOnly: false
+          call: "relativity-legal-hold.add-custodian-to-project"
+          with:
+            workspaceId: "tools.workspaceId"
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-active-custodian-summary
+          description: "Get a summary of all custodians currently on legal hold across all projects."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "relativity-legal-hold.get-active-custodian-summary"
+          with:
+            workspaceId: "tools.workspaceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-hr-entity
+          description: "Create an HR entity to integrate employee records with legal hold workflows."
+          hints:
+            readOnly: false
+          call: "relativity-legal-hold.create-entity"
+          with:
+            workspaceId: "tools.workspaceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-employee-status
+          description: "Update the employment status of an entity in the legal hold system."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "relativity-legal-hold.update-entity-status"
+          with:
+            workspaceId: "tools.workspaceId"
+            entityId: "tools.entityId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: preserve-custodian-data
+          description: "Initiate data preservation for custodians across M365 and Google Workspace."
+          hints:
+            readOnly: false
+            destructive: false
+          call: "relativity-legal-hold.preserve-custodian-data"
+          with:
+            workspaceId: "tools.workspaceId"
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: release-custodians-from-hold
+          description: "Release custodians from a legal hold and remove their data preservation."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "relativity-legal-hold.release-custodian-from-project"
+          with:
+            workspaceId: "tools.workspaceId"
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-hold-communication
+          description: "Create a legal hold communication notice with escalation and reminder schedules."
+          hints:
+            readOnly: false
+          call: "relativity-legal-hold.create-legal-hold-communication"
+          with:
+            workspaceId: "tools.workspaceId"
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-legal-hold-task
+          description: "Create a task for tracking legal hold actions and assignments."
+          hints:
+            readOnly: false
+          call: "relativity-legal-hold.create-legal-hold-task"
+          with:
+            workspaceId: "tools.workspaceId"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,76 @@
+{
+  "title": "RelativityOne Legal Hold API Structure",
+  "description": "Structural overview of the RelativityOne Legal Hold API entities and their relationships.",
+  "version": "1.0.0",
+  "entities": {
+    "LegalHoldProject": {
+      "description": "A legal hold project representing a litigation matter.",
+      "fields": {
+        "artifactId": { "type": "integer", "description": "Unique workspace artifact ID." },
+        "name": { "type": "string", "description": "Project name." },
+        "status": { "type": "enum", "values": ["Active", "Closed", "Draft"] },
+        "ownerEmailAddress": { "type": "email" },
+        "description": { "type": "string" },
+        "createdDate": { "type": "datetime" },
+        "modifiedDate": { "type": "datetime" }
+      },
+      "relations": {
+        "custodians": { "type": "one-to-many", "entity": "Custodian" },
+        "communications": { "type": "one-to-many", "entity": "Communication" },
+        "tasks": { "type": "one-to-many", "entity": "Task" }
+      }
+    },
+    "Custodian": {
+      "description": "An individual whose data is subject to legal hold preservation.",
+      "fields": {
+        "artifactId": { "type": "integer" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "emailAddress": { "type": "email" },
+        "employeeId": { "type": "string" },
+        "status": { "type": "enum", "values": ["Active", "Released", "Pending"] }
+      },
+      "relations": {
+        "project": { "type": "many-to-one", "entity": "LegalHoldProject" },
+        "entity": { "type": "many-to-one", "entity": "Entity" }
+      }
+    },
+    "Entity": {
+      "description": "An HR entity representing an employee in the legal hold system.",
+      "fields": {
+        "artifactId": { "type": "integer" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "emailAddress": { "type": "email" },
+        "employeeId": { "type": "string" },
+        "employeeStatus": { "type": "string" }
+      }
+    },
+    "Communication": {
+      "description": "A legal hold notice or reminder sent to custodians.",
+      "fields": {
+        "name": { "type": "string" },
+        "type": { "type": "enum", "values": ["InitialNotice", "Reminder", "Escalation", "Release"] },
+        "escalationEnabled": { "type": "boolean" },
+        "reminderIntervalDays": { "type": "integer" }
+      },
+      "relations": {
+        "project": { "type": "many-to-one", "entity": "LegalHoldProject" }
+      }
+    },
+    "Task": {
+      "description": "A task assigned as part of a legal hold workflow.",
+      "fields": {
+        "artifactId": { "type": "integer" },
+        "name": { "type": "string" },
+        "status": { "type": "enum", "values": ["Open", "InProgress", "Completed", "Cancelled"] },
+        "projectId": { "type": "integer" },
+        "dueDate": { "type": "date" },
+        "assignedTo": { "type": "email" }
+      },
+      "relations": {
+        "project": { "type": "many-to-one", "entity": "LegalHoldProject" }
+      }
+    }
+  }
+}

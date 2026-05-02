@@ -1,0 +1,30 @@
+{
+  "title": "Add Custodian to Legal Hold Project",
+  "description": "Example request and response for adding a custodian to a legal hold project in RelativityOne.",
+  "request": {
+    "method": "POST",
+    "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/12345/legal-hold/projects/98765/custodians",
+    "headers": {
+      "Authorization": "Bearer {token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "emailAddress": "john.doe@example.com",
+      "employeeId": "EMP-12345"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "artifactId": 11111,
+      "firstName": "John",
+      "lastName": "Doe",
+      "emailAddress": "john.doe@example.com",
+      "employeeId": "EMP-12345",
+      "status": "Active"
+    }
+  }
+}

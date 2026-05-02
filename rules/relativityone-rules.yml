@@ -1,0 +1,118 @@
+extends: "spectral:oas"
+
+rules:
+  # RelativityOne enforces workspace-scoped paths
+  relativityone-workspace-scoped-path:
+    description: All resource paths should include a workspaceId parameter to scope operations to a workspace.
+    message: "Path '{{property}}' should include a workspaceId parameter for workspace scoping."
+    given: "$.paths[*]"
+    severity: warn
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: ".*workspaces/\\{workspaceId\\}.*"
+
+  # RelativityOne uses artifactId as integer identifiers
+  relativityone-integer-artifact-ids:
+    description: Path parameters named workspaceId, projectId, taskId, entityId should be integer type.
+    message: "Path parameter '{{property}}' should have type integer in RelativityOne APIs."
+    given: "$.paths[*][*].parameters[?(@.name =~ /Id$/ && @.in == 'path')].schema"
+    severity: warn
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - integer
+
+  # All operations must have tags
+  relativityone-operation-tags:
+    description: All operations should have at least one tag for grouping in documentation.
+    message: "Operation '{{path}}' is missing tags."
+    given: "$.paths[*][*]"
+    severity: error
+    then:
+      field: tags
+      function: truthy
+
+  # All operations must have operationIds
+  relativityone-operation-ids:
+    description: All operations must have unique operationIds in camelCase.
+    message: "Operation '{{path}}' is missing an operationId."
+    given: "$.paths[*][*]"
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+
+  # operationIds should be camelCase
+  relativityone-operation-id-camel-case:
+    description: OperationIds should use camelCase naming convention.
+    message: "OperationId '{{value}}' should use camelCase."
+    given: "$.paths[*][*].operationId"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # Summaries should use Title Case
+  relativityone-title-case-summaries:
+    description: Operation summaries should use Title Case.
+    message: "Summary '{{value}}' should use Title Case."
+    given: "$.paths[*][*].summary"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  # All responses should have descriptions
+  relativityone-response-descriptions:
+    description: All response codes should have descriptions.
+    message: "Response '{{path}}' is missing a description."
+    given: "$.paths[*][*].responses[*]"
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  # POST/PUT request bodies should use application/json
+  relativityone-json-content-type:
+    description: Request bodies should use application/json content type.
+    message: "Request body at '{{path}}' should use application/json."
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    severity: error
+    then:
+      field: "application/json"
+      function: truthy
+
+  # All schemas should have descriptions
+  relativityone-schema-descriptions:
+    description: Schema properties should have descriptions for API clarity.
+    message: "Schema property '{{path}}' is missing a description."
+    given: "$.components.schemas[*].properties[*]"
+    severity: info
+    then:
+      field: description
+      function: truthy
+
+  # Collections should use pagination parameters
+  relativityone-pagination-on-lists:
+    description: GET operations returning lists should support start and length pagination parameters.
+    message: "List operation '{{path}}' should support pagination via start and length query parameters."
+    given: "$.paths[*].get"
+    severity: info
+    then:
+      field: parameters
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            properties:
+              name:
+                type: string
+                enum: ["start", "length", "page", "limit"]

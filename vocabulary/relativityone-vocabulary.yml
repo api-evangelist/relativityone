@@ -1,0 +1,85 @@
+title: RelativityOne Vocabulary
+description: Key terms and concepts used in the RelativityOne eDiscovery platform and its APIs.
+version: 1.0.0
+modified: '2026-05-02'
+terms:
+  - term: eDiscovery
+    definition: >-
+      Electronic discovery; the process of identifying, collecting, reviewing, and
+      producing electronically stored information (ESI) in response to litigation,
+      investigation, or regulatory requests.
+
+  - term: Legal Hold
+    definition: >-
+      A directive requiring an organization to preserve all relevant data and documents
+      related to anticipated or pending litigation or investigation.
+
+  - term: Custodian
+    definition: >-
+      An individual whose electronic data (email, files, messages) is subject to a
+      legal hold or preservation obligation in connection with a legal matter.
+
+  - term: Preservation
+    definition: >-
+      The process of ensuring that electronically stored information is not altered,
+      overwritten, or deleted while subject to a legal hold.
+
+  - term: Artifact ID
+    definition: >-
+      RelativityOne's internal integer identifier uniquely assigned to each object
+      (document, custodian, project, workspace) within the platform.
+
+  - term: Workspace
+    definition: >-
+      The primary organizational unit in RelativityOne, acting as a container for
+      documents, processing, review, and analytic operations for a specific matter.
+
+  - term: Relativity Dynamic Object (RDO)
+    definition: >-
+      Custom objects created in RelativityOne to represent data structures beyond
+      standard document and folder types, supporting flexible data modeling.
+
+  - term: Kepler Framework
+    definition: >-
+      RelativityOne's REST API hosting framework that allows developers to create
+      custom REST API endpoints by implementing .NET interfaces.
+
+  - term: Object Manager
+    definition: >-
+      The RelativityOne API service for CRUD operations on documents and Relativity
+      Dynamic Objects, supporting bulk read, create, update, and delete operations.
+
+  - term: Matter Management
+    definition: >-
+      The process of organizing and tracking legal cases, projects, and associated
+      data, personnel, and deadlines.
+
+  - term: Active Custodian
+    definition: >-
+      A custodian who is currently under a legal hold obligation and whose data is
+      actively being preserved.
+
+  - term: Data Source
+    definition: >-
+      A system containing custodian data subject to preservation, such as Microsoft
+      365 (Exchange, SharePoint, OneDrive) or Google Workspace (Gmail, Drive).
+
+  - term: Communication
+    definition: >-
+      A legal hold notice, reminder, escalation, or release notification sent to
+      custodians to inform them of their preservation obligations.
+
+  - term: Processing
+    definition: >-
+      The ingestion and preparation of ESI for review in RelativityOne, including
+      text extraction, deduplication, and metadata extraction.
+
+  - term: Review
+    definition: >-
+      The attorney review workflow in RelativityOne for coding documents as relevant,
+      privileged, or non-responsive to production requests.
+
+  - term: Privilege Log
+    definition: >-
+      A log documenting documents withheld from production due to attorney-client
+      privilege or work product protection.

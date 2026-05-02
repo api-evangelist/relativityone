@@ -1,0 +1,735 @@
+openapi: 3.1.0
+info:
+  title: RelativityOne Legal Hold API
+  description: >-
+    The Legal Hold API enables matter and project management integration with
+    external systems such as matter management platforms and HR systems. It provides
+    endpoints for custodian management, preservation workflows, task tracking, entity
+    management, and communication configuration. Authentication is handled via
+    Microsoft Graph API.
+  version: 1.0.0
+  contact:
+    url: https://platform.relativity.com/
+  license:
+    name: Proprietary
+    url: https://www.relativity.com/terms-of-service/
+servers:
+  - url: https://relativity.rest/api
+    description: RelativityOne REST API
+tags:
+  - name: Legal Hold Projects
+    description: Operations for managing legal hold projects
+  - name: Custodians
+    description: Operations for managing legal hold custodians
+  - name: Entities
+    description: Operations for managing HR entities and employees
+  - name: Preservation
+    description: Operations for data preservation and releases
+  - name: Communications
+    description: Operations for legal hold communications and notifications
+  - name: Tasks
+    description: Operations for legal hold task management
+paths:
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects:
+    get:
+      operationId: listLegalHoldProjects
+      summary: List Legal Hold Projects
+      description: Retrieves a list of legal hold projects in the specified workspace.
+      tags:
+        - Legal Hold Projects
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: start
+          in: query
+          required: false
+          description: The starting index for pagination.
+          schema:
+            type: integer
+            default: 0
+        - name: length
+          in: query
+          required: false
+          description: The number of records to return.
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: List of legal hold projects returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldProjectList'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+    post:
+      operationId: createLegalHoldProject
+      summary: Create Legal Hold Project
+      description: Creates a new legal hold project in the specified workspace.
+      tags:
+        - Legal Hold Projects
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLegalHoldProjectRequest'
+      responses:
+        '200':
+          description: Legal hold project created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldProject'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}:
+    get:
+      operationId: getLegalHoldProject
+      summary: Get Legal Hold Project
+      description: Retrieves a specific legal hold project by its artifact ID.
+      tags:
+        - Legal Hold Projects
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: projectId
+          in: path
+          required: true
+          description: The artifact ID of the legal hold project.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Legal hold project retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldProject'
+        '404':
+          description: Project not found.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/custodians:
+    get:
+      operationId: listProjectCustodians
+      summary: List Project Custodians
+      description: Retrieves all custodians assigned to a specific legal hold project.
+      tags:
+        - Custodians
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: projectId
+          in: path
+          required: true
+          description: The artifact ID of the legal hold project.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of custodians returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustodianList'
+        '404':
+          description: Project not found.
+    post:
+      operationId: addCustodianToProject
+      summary: Add Custodian to Project
+      description: Adds a custodian to a legal hold project.
+      tags:
+        - Custodians
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: projectId
+          in: path
+          required: true
+          description: The artifact ID of the legal hold project.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCustodianRequest'
+      responses:
+        '200':
+          description: Custodian added successfully.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/active-custodians:
+    get:
+      operationId: getActiveCustodianSummary
+      summary: Get Active Custodian Summary
+      description: >-
+        Retrieves a list of all custodians who are actively on-hold across all
+        projects. Returns up to 1000 records with pagination support.
+      tags:
+        - Custodians
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: start
+          in: query
+          required: false
+          description: The starting index for pagination.
+          schema:
+            type: integer
+            default: 0
+        - name: length
+          in: query
+          required: false
+          description: Number of records to return (max 1000).
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+      responses:
+        '200':
+          description: Active custodian summary returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveCustodianSummaryList'
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities:
+    post:
+      operationId: createEntity
+      summary: Create Entity
+      description: Creates an HR entity with name and email for use in legal hold workflows.
+      tags:
+        - Entities
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntityRequest'
+      responses:
+        '200':
+          description: Entity created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities/{entityId}:
+    put:
+      operationId: updateEntityStatus
+      summary: Update Entity Status
+      description: Updates the employee status of an entity.
+      tags:
+        - Entities
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: entityId
+          in: path
+          required: true
+          description: The artifact ID of the entity.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntityStatusRequest'
+      responses:
+        '200':
+          description: Entity status updated successfully.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/preserve:
+    post:
+      operationId: preserveCustodianData
+      summary: Preserve Custodian Data
+      description: >-
+        Initiates data preservation for custodians across Microsoft 365 and
+        Google Workspace data sources.
+      tags:
+        - Preservation
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: projectId
+          in: path
+          required: true
+          description: The artifact ID of the legal hold project.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreservationRequest'
+      responses:
+        '200':
+          description: Preservation initiated successfully.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/release:
+    post:
+      operationId: releaseCustodianFromProject
+      summary: Release Custodian from Project
+      description: Releases one or more custodians from a legal hold project and their data sources.
+      tags:
+        - Preservation
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: projectId
+          in: path
+          required: true
+          description: The artifact ID of the legal hold project.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseRequest'
+      responses:
+        '200':
+          description: Custodians released successfully.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/communications:
+    post:
+      operationId: createLegalHoldCommunication
+      summary: Create Legal Hold Communication
+      description: >-
+        Creates a legal hold communication for a project, configuring escalation
+        settings and reminder schedules.
+      tags:
+        - Communications
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: projectId
+          in: path
+          required: true
+          description: The artifact ID of the legal hold project.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCommunicationRequest'
+      responses:
+        '200':
+          description: Communication created successfully.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/tasks:
+    post:
+      operationId: createLegalHoldTask
+      summary: Create Legal Hold Task
+      description: Creates a new task for a legal hold project with status tracking.
+      tags:
+        - Tasks
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '200':
+          description: Task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/tasks/{taskId}:
+    put:
+      operationId: updateLegalHoldTask
+      summary: Update Legal Hold Task
+      description: Updates the status or details of an existing legal hold task.
+      tags:
+        - Tasks
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The artifact ID of the workspace.
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          description: The artifact ID of the task.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+      responses:
+        '200':
+          description: Task updated successfully.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained via Microsoft Graph API OAuth flow.
+  schemas:
+    LegalHoldProject:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the legal hold project.
+        name:
+          type: string
+          description: The name of the legal hold project.
+        status:
+          type: string
+          description: The current status of the legal hold project.
+          enum:
+            - Active
+            - Closed
+            - Draft
+        ownerEmailAddress:
+          type: string
+          format: email
+          description: Email address of the project owner.
+        description:
+          type: string
+          description: Optional description of the legal hold project.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date the project was created.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: The date the project was last modified.
+    LegalHoldProjectList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalHoldProject'
+        totalCount:
+          type: integer
+          description: Total number of projects matching the query.
+    CreateLegalHoldProjectRequest:
+      type: object
+      required:
+        - name
+        - ownerEmailAddress
+      properties:
+        name:
+          type: string
+          description: The name of the legal hold project.
+        ownerEmailAddress:
+          type: string
+          format: email
+          description: Email address of the project owner.
+        description:
+          type: string
+          description: Optional description of the project.
+        status:
+          type: string
+          enum:
+            - Active
+            - Draft
+          default: Active
+    Custodian:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the custodian.
+        firstName:
+          type: string
+          description: First name of the custodian.
+        lastName:
+          type: string
+          description: Last name of the custodian.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the custodian.
+        employeeId:
+          type: string
+          description: Optional employee identifier from HR system.
+        status:
+          type: string
+          description: Current hold status of the custodian.
+    CustodianList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Custodian'
+        totalCount:
+          type: integer
+    AddCustodianRequest:
+      type: object
+      required:
+        - emailAddress
+      properties:
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the custodian to add.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
+    ActiveCustodianSummary:
+      type: object
+      properties:
+        projectId:
+          type: integer
+          description: The artifact ID of the project.
+        projectName:
+          type: string
+          description: Name of the legal hold project.
+        firstName:
+          type: string
+          description: First name of the custodian.
+        lastName:
+          type: string
+          description: Last name of the custodian.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the custodian.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
+    ActiveCustodianSummaryList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActiveCustodianSummary'
+        totalCount:
+          type: integer
+          description: Total number of active custodians.
+    Entity:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the entity.
+        firstName:
+          type: string
+          description: First name of the entity.
+        lastName:
+          type: string
+          description: Last name of the entity.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the entity.
+        employeeStatus:
+          type: string
+          description: Employment status of the entity.
+    CreateEntityRequest:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - emailAddress
+      properties:
+        firstName:
+          type: string
+          description: First name of the entity.
+        lastName:
+          type: string
+          description: Last name of the entity.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the entity.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
+    UpdateEntityStatusRequest:
+      type: object
+      required:
+        - employeeStatus
+      properties:
+        employeeStatus:
+          type: string
+          description: The updated employment status.
+    PreservationRequest:
+      type: object
+      required:
+        - custodianIds
+        - dataSources
+      properties:
+        custodianIds:
+          type: array
+          items:
+            type: integer
+          description: List of custodian artifact IDs to preserve data for.
+        dataSources:
+          type: array
+          items:
+            type: string
+            enum:
+              - Microsoft365
+              - GoogleWorkspace
+          description: Data sources to preserve.
+    ReleaseRequest:
+      type: object
+      required:
+        - custodianIds
+      properties:
+        custodianIds:
+          type: array
+          items:
+            type: integer
+          description: List of custodian artifact IDs to release.
+    CreateCommunicationRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: Name of the communication.
+        type:
+          type: string
+          enum:
+            - InitialNotice
+            - Reminder
+            - Escalation
+            - Release
+          description: Type of legal hold communication.
+        escalationEnabled:
+          type: boolean
+          description: Whether escalation reminders are enabled.
+        reminderIntervalDays:
+          type: integer
+          description: Number of days between reminder notifications.
+    Task:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the task.
+        name:
+          type: string
+          description: Name of the task.
+        status:
+          type: string
+          enum:
+            - Open
+            - InProgress
+            - Completed
+            - Cancelled
+          description: Current status of the task.
+        projectId:
+          type: integer
+          description: Artifact ID of the associated legal hold project.
+        dueDate:
+          type: string
+          format: date
+          description: Due date of the task.
+    CreateTaskRequest:
+      type: object
+      required:
+        - name
+        - projectId
+      properties:
+        name:
+          type: string
+          description: Name of the task.
+        projectId:
+          type: integer
+          description: Artifact ID of the legal hold project.
+        dueDate:
+          type: string
+          format: date
+          description: Optional due date for the task.
+        assignedTo:
+          type: string
+          description: Email address of the user assigned to the task.
+    UpdateTaskRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - Open
+            - InProgress
+            - Completed
+            - Cancelled
+          description: Updated status of the task.
+        dueDate:
+          type: string
+          format: date
+          description: Updated due date.
+security:
+  - BearerAuth: []

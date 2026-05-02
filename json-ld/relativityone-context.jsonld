@@ -1,0 +1,106 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "relativity": "https://platform.relativity.com/vocab/",
+    "LegalHoldProject": {
+      "@id": "relativity:LegalHoldProject",
+      "@type": "@id"
+    },
+    "Custodian": {
+      "@id": "relativity:Custodian",
+      "@type": "@id"
+    },
+    "Entity": {
+      "@id": "relativity:Entity",
+      "@type": "@id"
+    },
+    "Communication": {
+      "@id": "relativity:Communication",
+      "@type": "@id"
+    },
+    "Task": {
+      "@id": "relativity:Task",
+      "@type": "@id"
+    },
+    "artifactId": {
+      "@id": "relativity:artifactId",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "status": {
+      "@id": "relativity:status"
+    },
+    "ownerEmailAddress": {
+      "@id": "schema:email"
+    },
+    "emailAddress": {
+      "@id": "schema:email"
+    },
+    "firstName": {
+      "@id": "schema:givenName"
+    },
+    "lastName": {
+      "@id": "schema:familyName"
+    },
+    "employeeId": {
+      "@id": "schema:identifier"
+    },
+    "employeeStatus": {
+      "@id": "schema:employmentType"
+    },
+    "dueDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    "createdDate": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modifiedDate": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "custodians": {
+      "@id": "relativity:hasCustodian",
+      "@container": "@set"
+    },
+    "tasks": {
+      "@id": "relativity:hasTask",
+      "@container": "@set"
+    },
+    "communications": {
+      "@id": "relativity:hasCommunication",
+      "@container": "@set"
+    },
+    "assignedTo": {
+      "@id": "schema:assignee"
+    },
+    "workspaceId": {
+      "@id": "relativity:workspaceId",
+      "@type": "xsd:integer"
+    },
+    "projectId": {
+      "@id": "relativity:projectId",
+      "@type": "xsd:integer"
+    },
+    "escalationEnabled": {
+      "@id": "relativity:escalationEnabled",
+      "@type": "xsd:boolean"
+    },
+    "reminderIntervalDays": {
+      "@id": "relativity:reminderIntervalDays",
+      "@type": "xsd:integer"
+    },
+    "dataSources": {
+      "@id": "relativity:dataSource",
+      "@container": "@set"
+    }
+  }
+}

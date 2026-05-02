@@ -1,0 +1,33 @@
+{
+  "title": "Create Legal Hold Project",
+  "description": "Example request and response for creating a new legal hold project in RelativityOne.",
+  "request": {
+    "method": "POST",
+    "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/12345/legal-hold/projects",
+    "headers": {
+      "Authorization": "Bearer {token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Matter 2026-001: Smith vs. Johnson Corp",
+      "ownerEmailAddress": "legal.admin@example.com",
+      "description": "Legal hold for anticipated litigation related to contract dispute.",
+      "status": "Active"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "artifactId": 98765,
+      "name": "Matter 2026-001: Smith vs. Johnson Corp",
+      "status": "Active",
+      "ownerEmailAddress": "legal.admin@example.com",
+      "description": "Legal hold for anticipated litigation related to contract dispute.",
+      "createdDate": "2026-05-02T10:00:00Z",
+      "modifiedDate": "2026-05-02T10:00:00Z"
+    }
+  }
+}
