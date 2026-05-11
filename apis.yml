@@ -163,6 +163,105 @@ common:
   - type: GitHub Organization
     url: https://github.com/relativitydev
 
+  - type: Integrations
+    url: https://www.relativity.com/partners/
+integrations:
+  - name: Trusted Partners
+  - name: Microsoft
+  - name: Become a Partner
+  - name: JND eDiscovery
+  - name: PwC
+  - name: Ankura
+  - name: Array
+  - name: BDO
+  - name: Cimplifi
+  - name: Complete Discovery Source (CDS)
+  - name: Control Risks
+  - name: Deloitte Consulting
+  - name: Epiq
+  - name: FTI Consulting
+  - name: KPMG
+  - name: Kroll
+  - name: Law In Order
+  - name: Lineal
+  - name: PageOne Legal
+  - name: PLUSnxt
+  - name: Alvarez and Marsal
+  - name: Avalon
+  - name: Berkeley Research Group (BRG)
+  - name: Elevate
+  - name: Forcyd
+  - name: FRP Advisory
+  - name: icourts
+  - name: Interpath
+  - name: KordaMentha
+  - name: Purpose Legal
+  - name: TCDI
+  - name: The MCS Group
+  - name: TrustPoint.One
+  - name: Accuracy
+  - name: AlixPartners
+  - name: ArcherHall
+  - name: Arendt
+  - name: BlueVoyant
+  - name: CACI
+  - name: Capsicum Group, LLC
+  - name: Charles River Associates
+  - name: Conduent
+  - name: Consilio
+  - name: Contact Discovery Services
+  - name: CYFOR Legal
+  - name: Dauntless Discovery
+  - name: eDiscovery Collab
+  - name: elaw
+  - name: Empire Discovery
+  - name: Everest Discovery
+  - name: Evolver Legal Services
+  - name: EY
+  - name: Forensic Risk Alliance
+  - name: FRONTEO
+  - name: Grant Thornton UK LLP
+  - name: Harrisons eDiscovery Consulting
+  - name: HaystackID
+  - name: Heuristica
+  - name: Holo Discovery
+  - name: iDiscovery Solutions - iDS
+  - name: Innovative Driven
+  - name: IntaForensics Ltd
+  - name: Intellectual Data
+  - name: IntrepidX
+  - name: IST Management
+  - name: JS Held
+  - name: KLDiscovery
+  - name: Morae Global Corporation
+  - name: N1 Discovery
+  - name: Oasis Discovery Partners
+  - name: Parcels
+  - name: ProSearch
+  - name: Proteus Discovery Group
+  - name: Proxiio
+  - name: Questa Sp. z o.o.
+  - name: Repario Data
+  - name: RSM
+  - name: S&W Partners
+  - name: S2|Data
+  - name: Sandline Discovery
+  - name: Sift Discovery
+  - name: Sky Discovery
+  - name: Streamline Imaging
+  - name: Swiss FTS
+  - name: Teneo
+  - name: TransPerfect
+  - name: UnitedLex
+  - name: vdiscovery
+  - name: Veristar
+  - name: Integreon
+  - name: WinWire
+  - name: Cellebrite
+  - name: Fileread
+  - name: NSerio
+  - name: GeorgeJon
+  - name: Robert Half Legal
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
