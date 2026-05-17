@@ -144,9 +144,9 @@ common:
     url: https://platform.relativity.com/
   - type: Developer Documentation
     url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
-  - type: API Reference
+  - type: APIReference
     url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/Relativity_API_reference.htm
-  - type: Changelog
+  - type: ChangeLog
     url: https://platform.relativity.com/RelativityOne/Content/What_s_new/What_s_new.htm
   - type: JSONLDContext
     url: >-
@@ -160,7 +160,7 @@ common:
   - type: NaftikoCapability
     url: >-
       https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/capabilities/legal-hold-management.yaml
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/relativitydev
 
   - type: Integrations
