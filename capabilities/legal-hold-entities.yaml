@@ -1,0 +1,143 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RelativityOne Legal Hold API — Entities
+  description: 'RelativityOne Legal Hold API — Entities. 2 operations. Lead operation: Create Entity. Self-contained Naftiko
+    capability covering one Relativityone business surface.'
+  tags:
+  - Relativityone
+  - Entities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RELATIVITYONE_API_KEY: RELATIVITYONE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: legal-hold-entities
+    baseUri: https://relativity.rest/api
+    description: RelativityOne Legal Hold API — Entities business capability. Self-contained, no shared references.
+    resources:
+    - name: relativity-environment-v1-workspaces-workspaceId-legal-hold-entities
+      path: /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities
+      operations:
+      - name: createentity
+        method: POST
+        description: Create Entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: relativity-environment-v1-workspaces-workspaceId-legal-hold-entities-entityId
+      path: /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities/{entityId}
+      operations:
+      - name: updateentitystatus
+        method: PUT
+        description: Update Entity Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: entityId
+          in: path
+          type: integer
+          description: The artifact ID of the entity.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RELATIVITYONE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: legal-hold-entities-rest
+    port: 8080
+    description: REST adapter for RelativityOne Legal Hold API — Entities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/relativity-environment/v1/workspaces/{workspaceid}/legal-hold/entities
+      name: relativity-environment-v1-workspaces-workspaceid-legal-hold-entities
+      description: REST surface for relativity-environment-v1-workspaces-workspaceId-legal-hold-entities.
+      operations:
+      - method: POST
+        name: createentity
+        description: Create Entity
+        call: legal-hold-entities.createentity
+        with:
+          workspaceId: rest.workspaceId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/relativity-environment/v1/workspaces/{workspaceid}/legal-hold/entities/{entityid}
+      name: relativity-environment-v1-workspaces-workspaceid-legal-hold-entities-entityid
+      description: REST surface for relativity-environment-v1-workspaces-workspaceId-legal-hold-entities-entityId.
+      operations:
+      - method: PUT
+        name: updateentitystatus
+        description: Update Entity Status
+        call: legal-hold-entities.updateentitystatus
+        with:
+          workspaceId: rest.workspaceId
+          entityId: rest.entityId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: legal-hold-entities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RelativityOne Legal Hold API — Entities. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-entity
+      description: Create Entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: legal-hold-entities.createentity
+      with:
+        workspaceId: tools.workspaceId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-entity-status
+      description: Update Entity Status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: legal-hold-entities.updateentitystatus
+      with:
+        workspaceId: tools.workspaceId
+        entityId: tools.entityId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

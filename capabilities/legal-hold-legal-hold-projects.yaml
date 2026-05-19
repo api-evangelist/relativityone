@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RelativityOne Legal Hold API — Legal Hold Projects
+  description: 'RelativityOne Legal Hold API — Legal Hold Projects. 3 operations. Lead operation: List Legal Hold Projects.
+    Self-contained Naftiko capability covering one Relativityone business surface.'
+  tags:
+  - Relativityone
+  - Legal Hold Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RELATIVITYONE_API_KEY: RELATIVITYONE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: legal-hold-legal-hold-projects
+    baseUri: https://relativity.rest/api
+    description: RelativityOne Legal Hold API — Legal Hold Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: relativity-environment-v1-workspaces-workspaceId-legal-hold-projects
+      path: /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects
+      operations:
+      - name: listlegalholdprojects
+        method: GET
+        description: List Legal Hold Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: start
+          in: query
+          type: integer
+          description: The starting index for pagination.
+        - name: length
+          in: query
+          type: integer
+          description: The number of records to return.
+      - name: createlegalholdproject
+        method: POST
+        description: Create Legal Hold Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: relativity-environment-v1-workspaces-workspaceId-legal-hold-projects-projectId
+      path: /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}
+      operations:
+      - name: getlegalholdproject
+        method: GET
+        description: Get Legal Hold Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: projectId
+          in: path
+          type: integer
+          description: The artifact ID of the legal hold project.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RELATIVITYONE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: legal-hold-legal-hold-projects-rest
+    port: 8080
+    description: REST adapter for RelativityOne Legal Hold API — Legal Hold Projects. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/relativity-environment/v1/workspaces/{workspaceid}/legal-hold/projects
+      name: relativity-environment-v1-workspaces-workspaceid-legal-hold-projects
+      description: REST surface for relativity-environment-v1-workspaces-workspaceId-legal-hold-projects.
+      operations:
+      - method: GET
+        name: listlegalholdprojects
+        description: List Legal Hold Projects
+        call: legal-hold-legal-hold-projects.listlegalholdprojects
+        with:
+          workspaceId: rest.workspaceId
+          start: rest.start
+          length: rest.length
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlegalholdproject
+        description: Create Legal Hold Project
+        call: legal-hold-legal-hold-projects.createlegalholdproject
+        with:
+          workspaceId: rest.workspaceId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/relativity-environment/v1/workspaces/{workspaceid}/legal-hold/projects/{projectid}
+      name: relativity-environment-v1-workspaces-workspaceid-legal-hold-projects-projectid
+      description: REST surface for relativity-environment-v1-workspaces-workspaceId-legal-hold-projects-projectId.
+      operations:
+      - method: GET
+        name: getlegalholdproject
+        description: Get Legal Hold Project
+        call: legal-hold-legal-hold-projects.getlegalholdproject
+        with:
+          workspaceId: rest.workspaceId
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: legal-hold-legal-hold-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RelativityOne Legal Hold API — Legal Hold Projects. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-legal-hold-projects
+      description: List Legal Hold Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: legal-hold-legal-hold-projects.listlegalholdprojects
+      with:
+        workspaceId: tools.workspaceId
+        start: tools.start
+        length: tools.length
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-legal-hold-project
+      description: Create Legal Hold Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: legal-hold-legal-hold-projects.createlegalholdproject
+      with:
+        workspaceId: tools.workspaceId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-legal-hold-project
+      description: Get Legal Hold Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: legal-hold-legal-hold-projects.getlegalholdproject
+      with:
+        workspaceId: tools.workspaceId
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.

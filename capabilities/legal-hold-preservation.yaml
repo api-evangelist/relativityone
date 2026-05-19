@@ -1,0 +1,150 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RelativityOne Legal Hold API — Preservation
+  description: 'RelativityOne Legal Hold API — Preservation. 2 operations. Lead operation: Preserve Custodian Data. Self-contained
+    Naftiko capability covering one Relativityone business surface.'
+  tags:
+  - Relativityone
+  - Preservation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RELATIVITYONE_API_KEY: RELATIVITYONE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: legal-hold-preservation
+    baseUri: https://relativity.rest/api
+    description: RelativityOne Legal Hold API — Preservation business capability. Self-contained, no shared references.
+    resources:
+    - name: relativity-environment-v1-workspaces-workspaceId-legal-hold-projects-projectId-p
+      path: /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/preserve
+      operations:
+      - name: preservecustodiandata
+        method: POST
+        description: Preserve Custodian Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: projectId
+          in: path
+          type: integer
+          description: The artifact ID of the legal hold project.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: relativity-environment-v1-workspaces-workspaceId-legal-hold-projects-projectId-r
+      path: /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/release
+      operations:
+      - name: releasecustodianfromproject
+        method: POST
+        description: Release Custodian from Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspaceId
+          in: path
+          type: integer
+          description: The artifact ID of the workspace.
+          required: true
+        - name: projectId
+          in: path
+          type: integer
+          description: The artifact ID of the legal hold project.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RELATIVITYONE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: legal-hold-preservation-rest
+    port: 8080
+    description: REST adapter for RelativityOne Legal Hold API — Preservation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/relativity-environment/v1/workspaces/{workspaceid}/legal-hold/projects/{projectid}/preserve
+      name: relativity-environment-v1-workspaces-workspaceid-legal-hold-projects-projectid-p
+      description: REST surface for relativity-environment-v1-workspaces-workspaceId-legal-hold-projects-projectId-p.
+      operations:
+      - method: POST
+        name: preservecustodiandata
+        description: Preserve Custodian Data
+        call: legal-hold-preservation.preservecustodiandata
+        with:
+          workspaceId: rest.workspaceId
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/relativity-environment/v1/workspaces/{workspaceid}/legal-hold/projects/{projectid}/release
+      name: relativity-environment-v1-workspaces-workspaceid-legal-hold-projects-projectid-r
+      description: REST surface for relativity-environment-v1-workspaces-workspaceId-legal-hold-projects-projectId-r.
+      operations:
+      - method: POST
+        name: releasecustodianfromproject
+        description: Release Custodian from Project
+        call: legal-hold-preservation.releasecustodianfromproject
+        with:
+          workspaceId: rest.workspaceId
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: legal-hold-preservation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RelativityOne Legal Hold API — Preservation. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: preserve-custodian-data
+      description: Preserve Custodian Data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: legal-hold-preservation.preservecustodiandata
+      with:
+        workspaceId: tools.workspaceId
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: release-custodian-project
+      description: Release Custodian from Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: legal-hold-preservation.releasecustodianfromproject
+      with:
+        workspaceId: tools.workspaceId
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
