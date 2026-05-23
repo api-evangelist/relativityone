@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateEntityRequest",
+  "title": "CreateEntityRequest",
+  "type": "object",
+  "required": [
+    "firstName",
+    "lastName",
+    "emailAddress"
+  ],
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "description": "First name of the entity."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name of the entity."
+    },
+    "emailAddress": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the entity."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Optional employee identifier."
+    }
+  }
+}

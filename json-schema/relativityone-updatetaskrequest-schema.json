@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateTaskRequest",
+  "title": "UpdateTaskRequest",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "InProgress",
+        "Completed",
+        "Cancelled"
+      ],
+      "description": "Updated status of the task."
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Updated due date."
+    }
+  }
+}

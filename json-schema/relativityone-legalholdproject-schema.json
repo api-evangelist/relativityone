@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LegalHoldProject",
+  "title": "LegalHoldProject",
+  "type": "object",
+  "properties": {
+    "artifactId": {
+      "type": "integer",
+      "description": "The unique artifact ID of the legal hold project."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the legal hold project."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the legal hold project.",
+      "enum": [
+        "Active",
+        "Closed",
+        "Draft"
+      ]
+    },
+    "ownerEmailAddress": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the project owner."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the legal hold project."
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date the project was created."
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date the project was last modified."
+    }
+  }
+}

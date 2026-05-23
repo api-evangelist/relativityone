@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddCustodianRequest",
+  "title": "AddCustodianRequest",
+  "type": "object",
+  "required": [
+    "emailAddress"
+  ],
+  "properties": {
+    "emailAddress": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the custodian to add."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Optional employee identifier."
+    }
+  }
+}

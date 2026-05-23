@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustodianList",
+  "title": "CustodianList",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Custodian"
+      }
+    },
+    "totalCount": {
+      "type": "integer"
+    }
+  }
+}

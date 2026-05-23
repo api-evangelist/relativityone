@@ -1,0 +1,253 @@
+{
+  "provider": "RelativityOne",
+  "providerId": "relativityone",
+  "kind": "json-structure",
+  "description": "Structural overview of the RelativityOne API surface; extracted from openapi/.",
+  "schemaCount": 17,
+  "operationCount": 13,
+  "schemas": [
+    {
+      "name": "LegalHoldProject",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "LegalHoldProjectList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CreateLegalHoldProjectRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "ownerEmailAddress"
+      ]
+    },
+    {
+      "name": "Custodian",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CustodianList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AddCustodianRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "emailAddress"
+      ]
+    },
+    {
+      "name": "ActiveCustodianSummary",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ActiveCustodianSummaryList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Entity",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CreateEntityRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "firstName",
+        "lastName",
+        "emailAddress"
+      ]
+    },
+    {
+      "name": "UpdateEntityStatusRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "employeeStatus"
+      ]
+    },
+    {
+      "name": "PreservationRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "custodianIds",
+        "dataSources"
+      ]
+    },
+    {
+      "name": "ReleaseRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "custodianIds"
+      ]
+    },
+    {
+      "name": "CreateCommunicationRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "Task",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CreateTaskRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "projectId"
+      ]
+    },
+    {
+      "name": "UpdateTaskRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects",
+      "operationId": "listLegalHoldProjects",
+      "summary": "List Legal Hold Projects",
+      "tags": [
+        "Legal Hold Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects",
+      "operationId": "createLegalHoldProject",
+      "summary": "Create Legal Hold Project",
+      "tags": [
+        "Legal Hold Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}",
+      "operationId": "getLegalHoldProject",
+      "summary": "Get Legal Hold Project",
+      "tags": [
+        "Legal Hold Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/custodians",
+      "operationId": "listProjectCustodians",
+      "summary": "List Project Custodians",
+      "tags": [
+        "Custodians"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/custodians",
+      "operationId": "addCustodianToProject",
+      "summary": "Add Custodian to Project",
+      "tags": [
+        "Custodians"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/active-custodians",
+      "operationId": "getActiveCustodianSummary",
+      "summary": "Get Active Custodian Summary",
+      "tags": [
+        "Custodians"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities",
+      "operationId": "createEntity",
+      "summary": "Create Entity",
+      "tags": [
+        "Entities"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities/{entityId}",
+      "operationId": "updateEntityStatus",
+      "summary": "Update Entity Status",
+      "tags": [
+        "Entities"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/preserve",
+      "operationId": "preserveCustodianData",
+      "summary": "Preserve Custodian Data",
+      "tags": [
+        "Preservation"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/release",
+      "operationId": "releaseCustodianFromProject",
+      "summary": "Release Custodian from Project",
+      "tags": [
+        "Preservation"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/communications",
+      "operationId": "createLegalHoldCommunication",
+      "summary": "Create Legal Hold Communication",
+      "tags": [
+        "Communications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/tasks",
+      "operationId": "createLegalHoldTask",
+      "summary": "Create Legal Hold Task",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/relativity-environment/v1/workspaces/{workspaceId}/legal-hold/tasks/{taskId}",
+      "operationId": "updateLegalHoldTask",
+      "summary": "Update Legal Hold Task",
+      "tags": [
+        "Tasks"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReleaseRequest",
+  "title": "ReleaseRequest",
+  "type": "object",
+  "required": [
+    "custodianIds"
+  ],
+  "properties": {
+    "custodianIds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "List of custodian artifact IDs to release."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Task",
+  "title": "Task",
+  "type": "object",
+  "properties": {
+    "artifactId": {
+      "type": "integer",
+      "description": "The unique artifact ID of the task."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the task."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "InProgress",
+        "Completed",
+        "Cancelled"
+      ],
+      "description": "Current status of the task."
+    },
+    "projectId": {
+      "type": "integer",
+      "description": "Artifact ID of the associated legal hold project."
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date of the task."
+    }
+  }
+}

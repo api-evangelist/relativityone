@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateTaskRequest",
+  "title": "CreateTaskRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "projectId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the task."
+    },
+    "projectId": {
+      "type": "integer",
+      "description": "Artifact ID of the legal hold project."
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional due date for the task."
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "Email address of the user assigned to the task."
+    }
+  }
+}

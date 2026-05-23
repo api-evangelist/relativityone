@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PreservationRequest",
+  "title": "PreservationRequest",
+  "type": "object",
+  "required": [
+    "custodianIds",
+    "dataSources"
+  ],
+  "properties": {
+    "custodianIds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "List of custodian artifact IDs to preserve data for."
+    },
+    "dataSources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Microsoft365",
+          "GoogleWorkspace"
+        ]
+      },
+      "description": "Data sources to preserve."
+    }
+  }
+}
