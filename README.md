@@ -1,19 +1,12 @@
-# RelativityOne
+# RelativityOne (relativityone)
 
 RelativityOne is a cloud-based eDiscovery and legal technology platform that provides comprehensive REST APIs for legal hold management, document processing, search and analytics, workspace management, identity and access control, and billing insights. The platform integrates with Microsoft 365 and Google Workspace for data preservation and legal hold workflows.
 
-**URL:** [apis.yml](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/apis.yml)
 
-## APIs
+## Scope
 
-| Name | Description |
-|---|---|
-| [Legal Hold API](https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm) | Endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. |
-| [Object Manager API](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm) | CRUD operations for documents and Relativity Dynamic Objects (RDOs). |
-| [Workspace Manager API](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm) | Workspace creation, configuration, and application installation operations. |
-| [Search and Analytics API](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm) | dtSearch, keyword search, Analytics Conceptual Index, and Pivot query operations. |
-| [User and Permission Manager API](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm) | Identity and access management including user, group, and permission operations. |
-| [Import and Export API](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm) | Document and RDO transfer and bulk import operations. |
+- **Type:** Index
 
 ## Tags
 
@@ -27,49 +20,148 @@ RelativityOne is a cloud-based eDiscovery and legal technology platform that pro
 ## Timestamps
 
 - **Created:** 2025-03-01
-- **Modified:** 2026-05-02
+- **Modified:** 2026-05-19
+
+## APIs
+
+### Legal Hold API
+
+The Legal Hold API enables matter and project management integration with external systems like matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.
+
+- **Human URL:** [https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm](https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm)
+- **Base URL:** `https://relativity.rest/api`
+
+#### Tags
+
+- Legal Hold
+- Custodian Management
+- Preservation
+- eDiscovery
+- Compliance
+
+#### Properties
+
+- [Documentation](https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/openapi/relativityone-legal-hold-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/json-schema/relativityone-legal-hold-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/json-schema/relativityone-custodian-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/json-structure/relativityone-legal-hold-structure.json)
+- [Postman Collection](collections/relativityone-legal-hold.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/relativityone-legal-hold.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Object Manager API
+
+The Object Manager API provides CRUD operations for documents and Relativity Dynamic Objects (RDOs). It supports bulk read, create, update, and delete operations with filtering and search capabilities across workspace objects.
+
+- **Human URL:** [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- **Base URL:** `https://relativity.rest/api`
+
+#### Tags
+
+- Document Management
+- Object Management
+- CRUD Operations
+- Workspace
+
+#### Properties
+
+- [Documentation](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- [Postman Collection](collections/relativityone-legal-hold.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/relativityone-legal-hold.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Workspace Manager API
+
+The Workspace Manager API provides CRUD operations for Relativity workspaces, including workspace creation, configuration, application installation, and environment management.
+
+- **Human URL:** [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- **Base URL:** `https://relativity.rest/api`
+
+#### Tags
+
+- Workspace Management
+- Administration
+- Configuration
+
+#### Properties
+
+- [Documentation](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- [Postman Collection](collections/relativityone-legal-hold.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/relativityone-legal-hold.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Search and Analytics API
+
+APIs for search and analytics operations in RelativityOne including dtSearch index management, keyword search, Analytics Conceptual Index for LSI and concept discovery, and Pivot queries for data analysis.
+
+- **Human URL:** [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- **Base URL:** `https://relativity.rest/api`
+
+#### Tags
+
+- Search
+- Analytics
+- Full Text Search
+- Concept Search
+- Data Analysis
+
+#### Properties
+
+- [Documentation](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- [Postman Collection](collections/relativityone-legal-hold.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/relativityone-legal-hold.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### User and Permission Manager API
+
+APIs for identity and access management in RelativityOne. Includes user CRUD operations, permission assignment and management, group administration, and client management.
+
+- **Human URL:** [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- **Base URL:** `https://relativity.rest/api`
+
+#### Tags
+
+- Identity
+- Access Management
+- Permissions
+- User Management
+
+#### Properties
+
+- [Documentation](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- [Postman Collection](collections/relativityone-legal-hold.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/relativityone-legal-hold.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Import and Export API
+
+Import and Export Services API for handling document and Relativity Dynamic Object (RDO) transfers, including bulk import operations for large data sets.
+
+- **Human URL:** [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- **Base URL:** `https://relativity.rest/api`
+
+#### Tags
+
+- Import
+- Export
+- Data Transfer
+- Bulk Operations
+
+#### Properties
+
+- [Documentation](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- [Postman Collection](collections/relativityone-legal-hold.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/relativityone-legal-hold.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
-| Type | URL |
-|---|---|
-| Website | [https://www.relativity.com](https://www.relativity.com) |
-| Documentation | [https://platform.relativity.com/](https://platform.relativity.com/) |
-| Developer Documentation | [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm) |
-| API Reference | [https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/Relativity_API_reference.htm](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/Relativity_API_reference.htm) |
-| Changelog | [https://platform.relativity.com/RelativityOne/Content/What_s_new/What_s_new.htm](https://platform.relativity.com/RelativityOne/Content/What_s_new/What_s_new.htm) |
-| GitHub Organization | [https://github.com/relativitydev](https://github.com/relativitydev) |
-
-## Artifacts
-
-| Type | Path |
-|---|---|
-| APIs Index | [apis.yml](apis.yml) |
-| OpenAPI (Legal Hold) | [openapi/relativityone-legal-hold-openapi.yml](openapi/relativityone-legal-hold-openapi.yml) |
-| Spectral Rules | [rules/relativityone-rules.yml](rules/relativityone-rules.yml) |
-| Capabilities | [capabilities/legal-hold-management.yaml](capabilities/legal-hold-management.yaml) |
-| Capabilities (Shared - Legal Hold) | [capabilities/shared/legal-hold.yaml](capabilities/shared/legal-hold.yaml) |
-| JSON Schema (Legal Hold Project) | [json-schema/relativityone-legal-hold-project-schema.json](json-schema/relativityone-legal-hold-project-schema.json) |
-| JSON Schema (Custodian) | [json-schema/relativityone-custodian-schema.json](json-schema/relativityone-custodian-schema.json) |
-| JSON Structure | [json-structure/relativityone-legal-hold-structure.json](json-structure/relativityone-legal-hold-structure.json) |
-| JSON-LD Context | [json-ld/relativityone-context.jsonld](json-ld/relativityone-context.jsonld) |
-| Examples | [examples/relativityone-create-legal-hold-project-example.json](examples/relativityone-create-legal-hold-project-example.json) |
-| Examples | [examples/relativityone-add-custodian-example.json](examples/relativityone-add-custodian-example.json) |
-| Vocabulary | [vocabulary/relativityone-vocabulary.yml](vocabulary/relativityone-vocabulary.yml) |
-
-## Capabilities
-
-### Workflow Capabilities
-
-| Capability | Description |
-|---|---|
-| [Legal Hold Management](capabilities/legal-hold-management.yaml) | Unified REST and MCP API for managing legal hold projects, custodians, preservation, communications, and tasks (12 tools). |
-
-### Shared Definitions
-
-| Shared File | Description |
-|---|---|
-| [legal-hold](capabilities/shared/legal-hold.yaml) | Per-API consumed definition for the RelativityOne Legal Hold REST API. |
+- [LinkedIn](https://www.linkedin.com/company/relativityhq)
+- [Website](https://www.relativity.com)
+- [Documentation](https://platform.relativity.com/)
+- [Developer  Documentation](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm)
+- [API Reference](https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/Relativity_API_reference.htm)
+- [Changelog](https://platform.relativity.com/RelativityOne/Content/What_s_new/What_s_new.htm)
+- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/json-ld/relativityone-context.jsonld)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/vocabulary/relativityone-vocabulary.yml)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/rules/relativityone-rules.yml)
+- [GitHub Organization](https://github.com/relativitydev)
+- [Integrations](https://www.relativity.com/partners/)
 
 ## Maintainers
 

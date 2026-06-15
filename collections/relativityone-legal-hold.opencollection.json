@@ -1,0 +1,419 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RelativityOne Legal Hold API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Legal Hold Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Legal Hold Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The starting index for pagination."
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of legal hold projects in the specified workspace."
+        },
+        {
+          "info": {
+            "name": "Create Legal Hold Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new legal hold project in the specified workspace."
+        },
+        {
+          "info": {
+            "name": "Get Legal Hold Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific legal hold project by its artifact ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custodians",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Project Custodians",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/custodians",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ]
+          },
+          "docs": "Retrieves all custodians assigned to a specific legal hold project."
+        },
+        {
+          "info": {
+            "name": "Add Custodian to Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/custodians",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a custodian to a legal hold project."
+        },
+        {
+          "info": {
+            "name": "Get Active Custodian Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/active-custodians",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The starting index for pagination."
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 1000)."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all custodians who are actively on-hold across all projects. Returns up to 1000 records with pagination support."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/entities",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an HR entity with name and email for use in legal hold workflows."
+        },
+        {
+          "info": {
+            "name": "Update Entity Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/entities/:entityId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the entity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the employee status of an entity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Preservation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Preserve Custodian Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/preserve",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates data preservation for custodians across Microsoft 365 and Google Workspace data sources."
+        },
+        {
+          "info": {
+            "name": "Release Custodian from Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/release",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Releases one or more custodians from a legal hold project and their data sources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Communications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Legal Hold Communication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/communications",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a legal hold communication for a project, configuring escalation settings and reminder schedules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Legal Hold Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/tasks",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new task for a legal hold project with status tracking."
+        },
+        {
+          "info": {
+            "name": "Update Legal Hold Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/tasks/:taskId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the task."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status or details of an existing legal hold task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
