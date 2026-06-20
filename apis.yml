@@ -6,7 +6,7 @@ description: >-
   and billing insights. The platform integrates with Microsoft 365 and Google Workspace for data preservation and legal
   hold workflows.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - eDiscovery
   - Legal
