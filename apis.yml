@@ -130,7 +130,7 @@ common:
     url: https://www.relativity.com
   - type: Documentation
     url: https://platform.relativity.com/
-  - type: Developer Documentation
+  - type: Documentation
     url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
   - type: APIReference
     url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/Relativity_API_reference.htm
