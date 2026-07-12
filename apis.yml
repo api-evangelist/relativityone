@@ -124,6 +124,14 @@ apis:
       - type: Documentation
         url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
 common:
+  - type: TrustCenter
+    url: security/relativityone-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/relativityone-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/relativityone-domain-security.yml
+  - type: Authentication
+    url: authentication/relativityone-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/relativityhq
   - type: Website
@@ -148,6 +156,8 @@ common:
     url: https://github.com/relativitydev
   - type: Integrations
     url: https://www.relativity.com/partners/
+  - url: https://feeds.feedburner.com/relativity/blog
+    type: Blog
 integrations:
   - name: Trusted Partners
   - name: Microsoft
