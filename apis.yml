@@ -124,6 +124,8 @@ apis:
       - type: Documentation
         url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
 common:
+  - type: AgenticAccess
+    url: agentic-access/relativityone-agentic-access.yml
   - type: TrustCenter
     url: security/relativityone-trust-center.yml
   - type: VulnerabilityDisclosure
