@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: RelativityOne Legal Hold Communications Tasks API
+  description: The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.
+  version: 1.0.0
+  contact:
+    url: https://platform.relativity.com/
+  license:
+    name: Proprietary
+    url: https://www.relativity.com/terms-of-service/
+servers:
+- url: https://relativity.rest/api
+  description: RelativityOne REST API
+security:
+- BearerAuth: []
+tags:
+- name: Tasks
+  description: Operations for legal hold task management
+paths:
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/tasks:
+    post:
+      operationId: createLegalHoldTask
+      summary: Create Legal Hold Task
+      description: Creates a new task for a legal hold project with status tracking.
+      tags:
+      - Tasks
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '200':
+          description: Task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/tasks/{taskId}:
+    put:
+      operationId: updateLegalHoldTask
+      summary: Update Legal Hold Task
+      description: Updates the status or details of an existing legal hold task.
+      tags:
+      - Tasks
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: taskId
+        in: path
+        required: true
+        description: The artifact ID of the task.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+      responses:
+        '200':
+          description: Task updated successfully.
+components:
+  schemas:
+    UpdateTaskRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - Open
+          - InProgress
+          - Completed
+          - Cancelled
+          description: Updated status of the task.
+        dueDate:
+          type: string
+          format: date
+          description: Updated due date.
+    CreateTaskRequest:
+      type: object
+      required:
+      - name
+      - projectId
+      properties:
+        name:
+          type: string
+          description: Name of the task.
+        projectId:
+          type: integer
+          description: Artifact ID of the legal hold project.
+        dueDate:
+          type: string
+          format: date
+          description: Optional due date for the task.
+        assignedTo:
+          type: string
+          description: Email address of the user assigned to the task.
+    Task:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the task.
+        name:
+          type: string
+          description: Name of the task.
+        status:
+          type: string
+          enum:
+          - Open
+          - InProgress
+          - Completed
+          - Cancelled
+          description: Current status of the task.
+        projectId:
+          type: integer
+          description: Artifact ID of the associated legal hold project.
+        dueDate:
+          type: string
+          format: date
+          description: Due date of the task.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained via Microsoft Graph API OAuth flow.

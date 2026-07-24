@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: RelativityOne Legal Hold Communications API
+  description: The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.
+  version: 1.0.0
+  contact:
+    url: https://platform.relativity.com/
+  license:
+    name: Proprietary
+    url: https://www.relativity.com/terms-of-service/
+servers:
+- url: https://relativity.rest/api
+  description: RelativityOne REST API
+security:
+- BearerAuth: []
+tags:
+- name: Communications
+  description: Operations for legal hold communications and notifications
+paths:
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/communications:
+    post:
+      operationId: createLegalHoldCommunication
+      summary: Create Legal Hold Communication
+      description: Creates a legal hold communication for a project, configuring escalation settings and reminder schedules.
+      tags:
+      - Communications
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: projectId
+        in: path
+        required: true
+        description: The artifact ID of the legal hold project.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCommunicationRequest'
+      responses:
+        '200':
+          description: Communication created successfully.
+components:
+  schemas:
+    CreateCommunicationRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Name of the communication.
+        type:
+          type: string
+          enum:
+          - InitialNotice
+          - Reminder
+          - Escalation
+          - Release
+          description: Type of legal hold communication.
+        escalationEnabled:
+          type: boolean
+          description: Whether escalation reminders are enabled.
+        reminderIntervalDays:
+          type: integer
+          description: Number of days between reminder notifications.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained via Microsoft Graph API OAuth flow.

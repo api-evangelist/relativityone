@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: RelativityOne Legal Hold Communications Preservation API
+  description: The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.
+  version: 1.0.0
+  contact:
+    url: https://platform.relativity.com/
+  license:
+    name: Proprietary
+    url: https://www.relativity.com/terms-of-service/
+servers:
+- url: https://relativity.rest/api
+  description: RelativityOne REST API
+security:
+- BearerAuth: []
+tags:
+- name: Preservation
+  description: Operations for data preservation and releases
+paths:
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/preserve:
+    post:
+      operationId: preserveCustodianData
+      summary: Preserve Custodian Data
+      description: Initiates data preservation for custodians across Microsoft 365 and Google Workspace data sources.
+      tags:
+      - Preservation
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: projectId
+        in: path
+        required: true
+        description: The artifact ID of the legal hold project.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreservationRequest'
+      responses:
+        '200':
+          description: Preservation initiated successfully.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}/release:
+    post:
+      operationId: releaseCustodianFromProject
+      summary: Release Custodian from Project
+      description: Releases one or more custodians from a legal hold project and their data sources.
+      tags:
+      - Preservation
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: projectId
+        in: path
+        required: true
+        description: The artifact ID of the legal hold project.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseRequest'
+      responses:
+        '200':
+          description: Custodians released successfully.
+components:
+  schemas:
+    PreservationRequest:
+      type: object
+      required:
+      - custodianIds
+      - dataSources
+      properties:
+        custodianIds:
+          type: array
+          items:
+            type: integer
+          description: List of custodian artifact IDs to preserve data for.
+        dataSources:
+          type: array
+          items:
+            type: string
+            enum:
+            - Microsoft365
+            - GoogleWorkspace
+          description: Data sources to preserve.
+    ReleaseRequest:
+      type: object
+      required:
+      - custodianIds
+      properties:
+        custodianIds:
+          type: array
+          items:
+            type: integer
+          description: List of custodian artifact IDs to release.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained via Microsoft Graph API OAuth flow.

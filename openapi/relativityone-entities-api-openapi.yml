@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: RelativityOne Legal Hold Communications Entities API
+  description: The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.
+  version: 1.0.0
+  contact:
+    url: https://platform.relativity.com/
+  license:
+    name: Proprietary
+    url: https://www.relativity.com/terms-of-service/
+servers:
+- url: https://relativity.rest/api
+  description: RelativityOne REST API
+security:
+- BearerAuth: []
+tags:
+- name: Entities
+  description: Operations for managing HR entities and employees
+paths:
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities:
+    post:
+      operationId: createEntity
+      summary: Create Entity
+      description: Creates an HR entity with name and email for use in legal hold workflows.
+      tags:
+      - Entities
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntityRequest'
+      responses:
+        '200':
+          description: Entity created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/entities/{entityId}:
+    put:
+      operationId: updateEntityStatus
+      summary: Update Entity Status
+      description: Updates the employee status of an entity.
+      tags:
+      - Entities
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: entityId
+        in: path
+        required: true
+        description: The artifact ID of the entity.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntityStatusRequest'
+      responses:
+        '200':
+          description: Entity status updated successfully.
+components:
+  schemas:
+    Entity:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the entity.
+        firstName:
+          type: string
+          description: First name of the entity.
+        lastName:
+          type: string
+          description: Last name of the entity.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the entity.
+        employeeStatus:
+          type: string
+          description: Employment status of the entity.
+    CreateEntityRequest:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - emailAddress
+      properties:
+        firstName:
+          type: string
+          description: First name of the entity.
+        lastName:
+          type: string
+          description: Last name of the entity.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the entity.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
+    UpdateEntityStatusRequest:
+      type: object
+      required:
+      - employeeStatus
+      properties:
+        employeeStatus:
+          type: string
+          description: The updated employment status.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained via Microsoft Graph API OAuth flow.

@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: RelativityOne Legal Hold Communications Legal Hold Projects API
+  description: The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.
+  version: 1.0.0
+  contact:
+    url: https://platform.relativity.com/
+  license:
+    name: Proprietary
+    url: https://www.relativity.com/terms-of-service/
+servers:
+- url: https://relativity.rest/api
+  description: RelativityOne REST API
+security:
+- BearerAuth: []
+tags:
+- name: Legal Hold Projects
+  description: Operations for managing legal hold projects
+paths:
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects:
+    get:
+      operationId: listLegalHoldProjects
+      summary: List Legal Hold Projects
+      description: Retrieves a list of legal hold projects in the specified workspace.
+      tags:
+      - Legal Hold Projects
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: start
+        in: query
+        required: false
+        description: The starting index for pagination.
+        schema:
+          type: integer
+          default: 0
+      - name: length
+        in: query
+        required: false
+        description: The number of records to return.
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: List of legal hold projects returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldProjectList'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+    post:
+      operationId: createLegalHoldProject
+      summary: Create Legal Hold Project
+      description: Creates a new legal hold project in the specified workspace.
+      tags:
+      - Legal Hold Projects
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLegalHoldProjectRequest'
+      responses:
+        '200':
+          description: Legal hold project created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldProject'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized.
+  /relativity-environment/v1/workspaces/{workspaceId}/legal-hold/projects/{projectId}:
+    get:
+      operationId: getLegalHoldProject
+      summary: Get Legal Hold Project
+      description: Retrieves a specific legal hold project by its artifact ID.
+      tags:
+      - Legal Hold Projects
+      parameters:
+      - name: workspaceId
+        in: path
+        required: true
+        description: The artifact ID of the workspace.
+        schema:
+          type: integer
+      - name: projectId
+        in: path
+        required: true
+        description: The artifact ID of the legal hold project.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Legal hold project retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldProject'
+        '404':
+          description: Project not found.
+components:
+  schemas:
+    LegalHoldProjectList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalHoldProject'
+        totalCount:
+          type: integer
+          description: Total number of projects matching the query.
+    CreateLegalHoldProjectRequest:
+      type: object
+      required:
+      - name
+      - ownerEmailAddress
+      properties:
+        name:
+          type: string
+          description: The name of the legal hold project.
+        ownerEmailAddress:
+          type: string
+          format: email
+          description: Email address of the project owner.
+        description:
+          type: string
+          description: Optional description of the project.
+        status:
+          type: string
+          enum:
+          - Active
+          - Draft
+          default: Active
+    LegalHoldProject:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the legal hold project.
+        name:
+          type: string
+          description: The name of the legal hold project.
+        status:
+          type: string
+          description: The current status of the legal hold project.
+          enum:
+          - Active
+          - Closed
+          - Draft
+        ownerEmailAddress:
+          type: string
+          format: email
+          description: Email address of the project owner.
+        description:
+          type: string
+          description: Optional description of the legal hold project.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date the project was created.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: The date the project was last modified.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token obtained via Microsoft Graph API OAuth flow.
