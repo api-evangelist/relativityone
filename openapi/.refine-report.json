@@ -1,0 +1,24 @@
+{
+  "provider": "relativityone",
+  "sources": [
+    "relativityone-communications-api-openapi.yml",
+    "relativityone-custodians-api-openapi.yml",
+    "relativityone-entities-api-openapi.yml",
+    "relativityone-legal-hold-projects-api-openapi.yml",
+    "relativityone-preservation-api-openapi.yml",
+    "relativityone-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "relativityone-communications-api-openapi.yml",
+    "relativityone-custodians-api-openapi.yml",
+    "relativityone-entities-api-openapi.yml",
+    "relativityone-legal-hold-projects-api-openapi.yml",
+    "relativityone-preservation-api-openapi.yml",
+    "relativityone-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
