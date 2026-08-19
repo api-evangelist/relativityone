@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "90c929d9-87b1-4d0a-90d5-8fe0759b1f61",
+      "name": "Preservation",
+      "description": {
+        "content": "Operations for data preservation and releases",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5da4280c-4b51-48bc-b89e-4ff66e1d328b",
+          "name": "Preserve Custodian Data",
+          "request": {
+            "name": "Preserve Custodian Data",
+            "description": {
+              "content": "Initiates data preservation for custodians across Microsoft 365 and Google Workspace data sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "relativity-environment",
+                "v1",
+                "workspaces",
+                ":workspaceId",
+                "legal-hold",
+                "projects",
+                ":projectId",
+                "preserve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workspaceId",
+                  "description": "(Required) The artifact ID of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The artifact ID of the legal hold project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"dataSources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a52c7fe-e7e9-4a53-a38b-b59207585ebf",
+              "name": "Preservation initiated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "projects",
+                    ":projectId",
+                    "preserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The artifact ID of the legal hold project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"dataSources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bb5c6b6-42a7-47c3-ba1f-beb218fbf87e",
+          "name": "Release Custodian from Project",
+          "request": {
+            "name": "Release Custodian from Project",
+            "description": {
+              "content": "Releases one or more custodians from a legal hold project and their data sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "relativity-environment",
+                "v1",
+                "workspaces",
+                ":workspaceId",
+                "legal-hold",
+                "projects",
+                ":projectId",
+                "release"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workspaceId",
+                  "description": "(Required) The artifact ID of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The artifact ID of the legal hold project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45560381-af7c-449e-b15a-4a74aae27736",
+              "name": "Custodians released successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "projects",
+                    ":projectId",
+                    "release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The artifact ID of the legal hold project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://relativity.rest/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "10ff708f-8899-45b2-8699-cf9d8493b5c6",
+    "name": "RelativityOne Legal Hold Communications Preservation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
+      "type": "text/plain"
+    }
+  }
+}

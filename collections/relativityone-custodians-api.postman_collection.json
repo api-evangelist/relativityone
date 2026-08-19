@@ -1,0 +1,485 @@
+{
+  "item": [
+    {
+      "id": "f7a77a53-03c0-480a-a90e-068cb0ecf602",
+      "name": "Custodians",
+      "description": {
+        "content": "Operations for managing legal hold custodians",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "015fc653-0bd7-4c5c-8bb0-76daf475360b",
+          "name": "List Project Custodians",
+          "request": {
+            "name": "List Project Custodians",
+            "description": {
+              "content": "Retrieves all custodians assigned to a specific legal hold project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "relativity-environment",
+                "v1",
+                "workspaces",
+                ":workspaceId",
+                "legal-hold",
+                "projects",
+                ":projectId",
+                "custodians"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workspaceId",
+                  "description": "(Required) The artifact ID of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The artifact ID of the legal hold project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f34802d-118d-4748-aa67-38730c9c1913",
+              "name": "List of custodians returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "projects",
+                    ":projectId",
+                    "custodians"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The artifact ID of the legal hold project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"artifactId\": 7142,\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emailAddress\": \"aeX7D@LT.yuk\",\n      \"employeeId\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"artifactId\": 1801,\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emailAddress\": \"H1v1OAxITK2Qi4@PIXGsLh.oyiw\",\n      \"employeeId\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"totalCount\": 1896\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b837507-83ba-4960-bfb2-b45e8383e29f",
+              "name": "Project not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "projects",
+                    ":projectId",
+                    "custodians"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The artifact ID of the legal hold project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80d005eb-cb2f-4e53-a271-ece4c3098151",
+          "name": "Add Custodian to Project",
+          "request": {
+            "name": "Add Custodian to Project",
+            "description": {
+              "content": "Adds a custodian to a legal hold project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "relativity-environment",
+                "v1",
+                "workspaces",
+                ":workspaceId",
+                "legal-hold",
+                "projects",
+                ":projectId",
+                "custodians"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workspaceId",
+                  "description": "(Required) The artifact ID of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The artifact ID of the legal hold project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailAddress\": \"<email>\",\n  \"employeeId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d709700a-7b59-4b04-bb06-ae8fa47d76ff",
+              "name": "Custodian added successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "projects",
+                    ":projectId",
+                    "custodians"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The artifact ID of the legal hold project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddress\": \"<email>\",\n  \"employeeId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3da3a31-1821-4c9f-84fc-d66c1f18026f",
+          "name": "Get Active Custodian Summary",
+          "request": {
+            "name": "Get Active Custodian Summary",
+            "description": {
+              "content": "Retrieves a list of all custodians who are actively on-hold across all projects. Returns up to 1000 records with pagination support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "relativity-environment",
+                "v1",
+                "workspaces",
+                ":workspaceId",
+                "legal-hold",
+                "active-custodians"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "The starting index for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "length",
+                  "value": "100",
+                  "description": "Number of records to return (max 1000)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workspaceId",
+                  "description": "(Required) The artifact ID of the workspace."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0769c9a8-9066-46f0-a179-ed4f9def38ee",
+              "name": "Active custodian summary returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "active-custodians"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "length",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"projectId\": 1887,\n      \"projectName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emailAddress\": \"ZyBm@omhVudJtFpJxtOSjIkx.qfru\",\n      \"employeeId\": \"string\"\n    },\n    {\n      \"projectId\": 5108,\n      \"projectName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emailAddress\": \"sBP8@SofJaXrrWaa.to\",\n      \"employeeId\": \"string\"\n    }\n  ],\n  \"totalCount\": 7843\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://relativity.rest/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2279240f-bca7-4289-86f6-dbad5c717813",
+    "name": "RelativityOne Legal Hold Communications Custodians API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RelativityOne Legal Hold Communications Custodians API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custodians",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Project Custodians",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/custodians",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ]
+          },
+          "docs": "Retrieves all custodians assigned to a specific legal hold project."
+        },
+        {
+          "info": {
+            "name": "Add Custodian to Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/custodians",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a custodian to a legal hold project."
+        },
+        {
+          "info": {
+            "name": "Get Active Custodian Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/active-custodians",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The starting index for pagination."
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 1000)."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all custodians who are actively on-hold across all projects. Returns up to 1000 records with pagination support."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

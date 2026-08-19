@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RelativityOne Legal Hold Communications API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Communications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Legal Hold Communication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/communications",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a legal hold communication for a project, configuring escalation settings and reminder schedules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

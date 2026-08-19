@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RelativityOne Legal Hold Communications Tasks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Legal Hold Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/tasks",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new task for a legal hold project with status tracking."
+        },
+        {
+          "info": {
+            "name": "Update Legal Hold Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/tasks/:taskId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the task."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status or details of an existing legal hold task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

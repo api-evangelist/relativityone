@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "e35a091b-d13a-4e4f-a1d9-37c764682aca",
+      "name": "Communications",
+      "description": {
+        "content": "Operations for legal hold communications and notifications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59a97bd2-5339-43ec-91de-248872d1a68e",
+          "name": "Create Legal Hold Communication",
+          "request": {
+            "name": "Create Legal Hold Communication",
+            "description": {
+              "content": "Creates a legal hold communication for a project, configuring escalation settings and reminder schedules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "relativity-environment",
+                "v1",
+                "workspaces",
+                ":workspaceId",
+                "legal-hold",
+                "projects",
+                ":projectId",
+                "communications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workspaceId",
+                  "description": "(Required) The artifact ID of the workspace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The artifact ID of the legal hold project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"escalationEnabled\": \"<boolean>\",\n  \"reminderIntervalDays\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f761e2eb-2e64-4c6e-a407-ebc17c3ebeba",
+              "name": "Communication created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "relativity-environment",
+                    "v1",
+                    "workspaces",
+                    ":workspaceId",
+                    "legal-hold",
+                    "projects",
+                    ":projectId",
+                    "communications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workspaceId",
+                      "description": "(Required) The artifact ID of the workspace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The artifact ID of the legal hold project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"escalationEnabled\": \"<boolean>\",\n  \"reminderIntervalDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://relativity.rest/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1a665ec8-facc-4ac4-91f2-89e94636705b",
+    "name": "RelativityOne Legal Hold Communications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
+      "type": "text/plain"
+    }
+  }
+}

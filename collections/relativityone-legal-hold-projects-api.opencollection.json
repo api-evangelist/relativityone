@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RelativityOne Legal Hold Communications Legal Hold Projects API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Legal Hold Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Legal Hold Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The starting index for pagination."
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of legal hold projects in the specified workspace."
+        },
+        {
+          "info": {
+            "name": "Create Legal Hold Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new legal hold project in the specified workspace."
+        },
+        {
+          "info": {
+            "name": "Get Legal Hold Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://relativity.rest/api/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the workspace."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The artifact ID of the legal hold project."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific legal hold project by its artifact ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
