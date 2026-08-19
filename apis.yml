@@ -30,7 +30,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/apis.yml
 created: '2025-03-01'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: relativityone:object-manager-api
   name: Object Manager API
