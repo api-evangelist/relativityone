@@ -24,6 +24,13 @@ tags:
   - eDiscovery
   - Legal
   - Legal Hold
+  - Document-Management
+  - Compliance
+  - Litigation
+tags_raw:
+  - eDiscovery
+  - Legal
+  - Legal Hold
   - Document Management
   - Compliance
   - Litigation
@@ -41,6 +48,11 @@ apis:
   humanURL: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
   baseURL: https://relativity.rest/api
   tags:
+  - Document-Management
+  - Object Management
+  - CRUD Operations
+  - Workspace
+  tags_raw:
   - Document Management
   - Object Management
   - CRUD Operations
@@ -70,6 +82,12 @@ apis:
   humanURL: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
   baseURL: https://relativity.rest/api
   tags:
+  - Search
+  - Analytics
+  - Full-Text Search
+  - Concept Search
+  - Data Analysis
+  tags_raw:
   - Search
   - Analytics
   - Full Text Search
@@ -219,6 +237,8 @@ apis:
   humanURL: https://platform.relativity.com/RelativityOne/Content/Legal_Hold_API/Legal_Hold_API.htm
   baseURL: https://relativity.rest/api
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
