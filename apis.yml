@@ -36,7 +36,7 @@ tags:
   - eDiscovery
   - Legal
   - Legal Hold
-  - Document-Management
+  - Document Management
   - Compliance
   - Litigation
 tags_raw:
@@ -46,6 +46,7 @@ tags_raw:
   - Document Management
   - Compliance
   - Litigation
+  - Document-Management
 url: https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/apis.yml
 created: '2025-03-01'
 modified: '2026-05-19'
@@ -60,7 +61,7 @@ apis:
   humanURL: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm
   baseURL: https://relativity.rest/api
   tags:
-  - Document-Management
+  - Document Management
   - Object Management
   - CRUD Operations
   - Workspace
@@ -69,6 +70,7 @@ apis:
   - Object Management
   - CRUD Operations
   - Workspace
+  - Document-Management
   properties:
   - type: Documentation
     url: https://platform.relativity.com/RelativityOne/Content/Relativity_Platform/index.htm

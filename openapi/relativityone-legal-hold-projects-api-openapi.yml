@@ -119,6 +119,16 @@ paths:
           description: Project not found.
 components:
   schemas:
+    LegalHoldProjectList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalHoldProject'
+        totalCount:
+          type: integer
+          description: Total number of projects matching the query.
     CreateLegalHoldProjectRequest:
       type: object
       required:
@@ -141,16 +151,6 @@ components:
           - Active
           - Draft
           default: Active
-    LegalHoldProjectList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/LegalHoldProject'
-        totalCount:
-          type: integer
-          description: Total number of projects matching the query.
     LegalHoldProject:
       type: object
       properties:

@@ -75,33 +75,6 @@ paths:
           description: Entity status updated successfully.
 components:
   schemas:
-    UpdateEntityStatusRequest:
-      type: object
-      required:
-      - employeeStatus
-      properties:
-        employeeStatus:
-          type: string
-          description: The updated employment status.
-    Entity:
-      type: object
-      properties:
-        artifactId:
-          type: integer
-          description: The unique artifact ID of the entity.
-        firstName:
-          type: string
-          description: First name of the entity.
-        lastName:
-          type: string
-          description: Last name of the entity.
-        emailAddress:
-          type: string
-          format: email
-          description: Email address of the entity.
-        employeeStatus:
-          type: string
-          description: Employment status of the entity.
     CreateEntityRequest:
       type: object
       required:
@@ -122,6 +95,33 @@ components:
         employeeId:
           type: string
           description: Optional employee identifier.
+    Entity:
+      type: object
+      properties:
+        artifactId:
+          type: integer
+          description: The unique artifact ID of the entity.
+        firstName:
+          type: string
+          description: First name of the entity.
+        lastName:
+          type: string
+          description: Last name of the entity.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the entity.
+        employeeStatus:
+          type: string
+          description: Employment status of the entity.
+    UpdateEntityStatusRequest:
+      type: object
+      required:
+      - employeeStatus
+      properties:
+        employeeStatus:
+          type: string
+          description: The updated employment status.
   securitySchemes:
     BearerAuth:
       type: http
