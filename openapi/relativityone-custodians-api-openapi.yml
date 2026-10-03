@@ -112,27 +112,6 @@ paths:
                 $ref: '#/components/schemas/ActiveCustodianSummaryList'
 components:
   schemas:
-    AddCustodianRequest:
-      type: object
-      required:
-      - emailAddress
-      properties:
-        emailAddress:
-          type: string
-          format: email
-          description: Email address of the custodian to add.
-        employeeId:
-          type: string
-          description: Optional employee identifier.
-    CustodianList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Custodian'
-        totalCount:
-          type: integer
     ActiveCustodianSummaryList:
       type: object
       properties:
@@ -143,28 +122,15 @@ components:
         totalCount:
           type: integer
           description: Total number of active custodians.
-    ActiveCustodianSummary:
+    CustodianList:
       type: object
       properties:
-        projectId:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Custodian'
+        totalCount:
           type: integer
-          description: The artifact ID of the project.
-        projectName:
-          type: string
-          description: Name of the legal hold project.
-        firstName:
-          type: string
-          description: First name of the custodian.
-        lastName:
-          type: string
-          description: Last name of the custodian.
-        emailAddress:
-          type: string
-          format: email
-          description: Email address of the custodian.
-        employeeId:
-          type: string
-          description: Optional employee identifier.
     Custodian:
       type: object
       properties:
@@ -187,6 +153,40 @@ components:
         status:
           type: string
           description: Current hold status of the custodian.
+    AddCustodianRequest:
+      type: object
+      required:
+      - emailAddress
+      properties:
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the custodian to add.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
+    ActiveCustodianSummary:
+      type: object
+      properties:
+        projectId:
+          type: integer
+          description: The artifact ID of the project.
+        projectName:
+          type: string
+          description: Name of the legal hold project.
+        firstName:
+          type: string
+          description: First name of the custodian.
+        lastName:
+          type: string
+          description: Last name of the custodian.
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the custodian.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
   securitySchemes:
     BearerAuth:
       type: http

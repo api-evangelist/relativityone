@@ -75,25 +75,21 @@ paths:
           description: Task updated successfully.
 components:
   schemas:
-    CreateTaskRequest:
+    UpdateTaskRequest:
       type: object
-      required:
-      - name
-      - projectId
       properties:
-        name:
+        status:
           type: string
-          description: Name of the task.
-        projectId:
-          type: integer
-          description: Artifact ID of the legal hold project.
+          enum:
+          - Open
+          - InProgress
+          - Completed
+          - Cancelled
+          description: Updated status of the task.
         dueDate:
           type: string
           format: date
-          description: Optional due date for the task.
-        assignedTo:
-          type: string
-          description: Email address of the user assigned to the task.
+          description: Updated due date.
     Task:
       type: object
       properties:
@@ -118,21 +114,25 @@ components:
           type: string
           format: date
           description: Due date of the task.
-    UpdateTaskRequest:
+    CreateTaskRequest:
       type: object
+      required:
+      - name
+      - projectId
       properties:
-        status:
+        name:
           type: string
-          enum:
-          - Open
-          - InProgress
-          - Completed
-          - Cancelled
-          description: Updated status of the task.
+          description: Name of the task.
+        projectId:
+          type: integer
+          description: Artifact ID of the legal hold project.
         dueDate:
           type: string
           format: date
-          description: Updated due date.
+          description: Optional due date for the task.
+        assignedTo:
+          type: string
+          description: Email address of the user assigned to the task.
   securitySchemes:
     BearerAuth:
       type: http
