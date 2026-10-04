@@ -119,28 +119,6 @@ paths:
           description: Project not found.
 components:
   schemas:
-    CreateLegalHoldProjectRequest:
-      type: object
-      required:
-      - name
-      - ownerEmailAddress
-      properties:
-        name:
-          type: string
-          description: The name of the legal hold project.
-        ownerEmailAddress:
-          type: string
-          format: email
-          description: Email address of the project owner.
-        description:
-          type: string
-          description: Optional description of the project.
-        status:
-          type: string
-          enum:
-          - Active
-          - Draft
-          default: Active
     LegalHoldProjectList:
       type: object
       properties:
@@ -182,6 +160,28 @@ components:
           type: string
           format: date-time
           description: The date the project was last modified.
+    CreateLegalHoldProjectRequest:
+      type: object
+      required:
+      - name
+      - ownerEmailAddress
+      properties:
+        name:
+          type: string
+          description: The name of the legal hold project.
+        ownerEmailAddress:
+          type: string
+          format: email
+          description: Email address of the project owner.
+        description:
+          type: string
+          description: Optional description of the project.
+        status:
+          type: string
+          enum:
+          - Active
+          - Draft
+          default: Active
   securitySchemes:
     BearerAuth:
       type: http

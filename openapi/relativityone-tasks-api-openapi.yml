@@ -75,21 +75,6 @@ paths:
           description: Task updated successfully.
 components:
   schemas:
-    UpdateTaskRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - Open
-          - InProgress
-          - Completed
-          - Cancelled
-          description: Updated status of the task.
-        dueDate:
-          type: string
-          format: date
-          description: Updated due date.
     Task:
       type: object
       properties:
@@ -114,6 +99,21 @@ components:
           type: string
           format: date
           description: Due date of the task.
+    UpdateTaskRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - Open
+          - InProgress
+          - Completed
+          - Cancelled
+          description: Updated status of the task.
+        dueDate:
+          type: string
+          format: date
+          description: Updated due date.
     CreateTaskRequest:
       type: object
       required:

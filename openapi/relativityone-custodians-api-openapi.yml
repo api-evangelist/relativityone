@@ -112,25 +112,6 @@ paths:
                 $ref: '#/components/schemas/ActiveCustodianSummaryList'
 components:
   schemas:
-    ActiveCustodianSummaryList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActiveCustodianSummary'
-        totalCount:
-          type: integer
-          description: Total number of active custodians.
-    CustodianList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Custodian'
-        totalCount:
-          type: integer
     Custodian:
       type: object
       properties:
@@ -153,18 +134,15 @@ components:
         status:
           type: string
           description: Current hold status of the custodian.
-    AddCustodianRequest:
+    CustodianList:
       type: object
-      required:
-      - emailAddress
       properties:
-        emailAddress:
-          type: string
-          format: email
-          description: Email address of the custodian to add.
-        employeeId:
-          type: string
-          description: Optional employee identifier.
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Custodian'
+        totalCount:
+          type: integer
     ActiveCustodianSummary:
       type: object
       properties:
@@ -187,6 +165,28 @@ components:
         employeeId:
           type: string
           description: Optional employee identifier.
+    AddCustodianRequest:
+      type: object
+      required:
+      - emailAddress
+      properties:
+        emailAddress:
+          type: string
+          format: email
+          description: Email address of the custodian to add.
+        employeeId:
+          type: string
+          description: Optional employee identifier.
+    ActiveCustodianSummaryList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActiveCustodianSummary'
+        totalCount:
+          type: integer
+          description: Total number of active custodians.
   securitySchemes:
     BearerAuth:
       type: http
