@@ -269,6 +269,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/json-structure/relativityone-legal-hold-structure.json
 common:
+  - type: CapabilityMap
+    url: capabilities/relativityone-capability-edges.yml
+    name: RelativityOne Business Capability Map
   - type: AgenticAccess
     url: agentic-access/relativityone-agentic-access.yml
   - type: TrustCenter

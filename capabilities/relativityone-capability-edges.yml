@@ -1,0 +1,55 @@
+slug: relativityone
+provider: RelativityOne
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Legal Hold Projects
+  spec_file: relativityone-legal-hold-projects-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.88
+  evidence: POST /.../legal-hold/projects  createLegalHoldProject  Create Legal Hold Project
+  reason: Creating and reading legal hold projects (matters) is core litigation hold / dispute management,
+    explicitly named in both the operations and the description ('matter and project management integration').
+- tag: Preservation
+  spec_file: relativityone-preservation-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.85
+  evidence: POST /.../legal-hold/projects/{projectId}/preserve  preserveCustodianData  Preserve Custodian
+    Data
+  reason: Data preservation and release of custodians under legal hold is evidence preservation for litigation,
+    mapping to Litigation & Dispute Management.
+- tag: Custodians
+  spec_file: relativityone-custodians-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.8
+  evidence: POST /.../legal-hold/projects/{projectId}/custodians  addCustodianToProject  Add Custodian
+    to Project
+  reason: Custodian management within legal hold projects is squarely eDiscovery/litigation hold administration,
+    i.e. Litigation & Dispute Management.
+- tag: Communications
+  spec_file: relativityone-communications-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.72
+  evidence: POST /.../legal-hold/projects/{projectId}/communications  createLegalHoldCommunication  Create
+    Legal Hold Communication
+  reason: Legal hold notice communications to custodians are part of litigation/dispute (eDiscovery preservation)
+    workflow, mapping to Litigation & Dispute Management. Slight ambiguity versus general communications
+    capabilities, hence 0.72.
