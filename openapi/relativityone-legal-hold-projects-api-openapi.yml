@@ -119,16 +119,6 @@ paths:
           description: Project not found.
 components:
   schemas:
-    LegalHoldProjectList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/LegalHoldProject'
-        totalCount:
-          type: integer
-          description: Total number of projects matching the query.
     LegalHoldProject:
       type: object
       properties:
@@ -182,6 +172,16 @@ components:
           - Active
           - Draft
           default: Active
+    LegalHoldProjectList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalHoldProject'
+        totalCount:
+          type: integer
+          description: Total number of projects matching the query.
   securitySchemes:
     BearerAuth:
       type: http
