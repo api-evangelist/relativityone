@@ -274,6 +274,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/relativityone/refs/heads/main/json-structure/relativityone-legal-hold-structure.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/relativityone/overview
   - type: Plans
     url: plans/relativityone-plans-pricing.yml
   - type: RateLimits
