@@ -1,293 +1,343 @@
 {
+  "info": {
+    "_postman_id": "5963bfe0-74ad-4e49-8f5b-3bf19505ef27",
+    "name": "RelativityOne Legal Hold Preservation API",
+    "description": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:35:56.000Z",
+    "updatedAt": "2026-10-22T02:35:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5963bfe0-74ad-4e49-8f5b-3bf19505ef27"
+  },
   "item": [
     {
-      "id": "90c929d9-87b1-4d0a-90d5-8fe0759b1f61",
-      "name": "Preservation",
-      "description": {
-        "content": "Operations for data preservation and releases",
-        "type": "text/plain"
-      },
+      "name": "relativity-environment",
       "item": [
         {
-          "id": "5da4280c-4b51-48bc-b89e-4ff66e1d328b",
-          "name": "Preserve Custodian Data",
-          "request": {
-            "name": "Preserve Custodian Data",
-            "description": {
-              "content": "Initiates data preservation for custodians across Microsoft 365 and Google Workspace data sources.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "relativity-environment",
-                "v1",
-                "workspaces",
-                ":workspaceId",
-                "legal-hold",
-                "projects",
-                ":projectId",
-                "preserve"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "workspaceId",
-                  "description": "(Required) The artifact ID of the workspace."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "projectId",
-                  "description": "(Required) The artifact ID of the legal hold project."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"dataSources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "9a52c7fe-e7e9-4a53-a38b-b59207585ebf",
-              "name": "Preservation initiated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects",
-                    ":projectId",
-                    "preserve"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "projectId",
-                      "description": "(Required) The artifact ID of the legal hold project."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"dataSources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "workspaces",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "{workspaceId}",
+                  "item": [
+                    {
+                      "name": "legal-hold",
+                      "item": [
+                        {
+                          "name": "projects",
+                          "item": [
+                            {
+                              "name": "{projectId}",
+                              "item": [
+                                {
+                                  "name": "preserve",
+                                  "item": [
+                                    {
+                                      "name": "Preserve Custodian Data",
+                                      "id": "3604475d-a1cc-43fa-b7c2-f89b7259af30",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"dataSources\": [\n    \"Microsoft365\",\n    \"GoogleWorkspace\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/preserve",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "relativity-environment",
+                                            "v1",
+                                            "workspaces",
+                                            ":workspaceId",
+                                            "legal-hold",
+                                            "projects",
+                                            ":projectId",
+                                            "preserve"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "a10c1e2f-0aa5-46dd-9664-96a5f98f343e",
+                                              "key": "workspaceId",
+                                              "value": "<integer>",
+                                              "description": "(Required) The artifact ID of the workspace."
+                                            },
+                                            {
+                                              "id": "249044dd-e406-4be4-94e4-7636b993e611",
+                                              "key": "projectId",
+                                              "value": "<integer>",
+                                              "description": "(Required) The artifact ID of the legal hold project."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Initiates data preservation for custodians across Microsoft 365 and Google Workspace data sources."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "6bf87fd8-db24-42d2-abc4-b8e88c0163f6",
+                                          "name": "Preservation initiated successfully.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"dataSources\": [\n    \"Microsoft365\",\n    \"GoogleWorkspace\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/preserve",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "relativity-environment",
+                                                "v1",
+                                                "workspaces",
+                                                ":workspaceId",
+                                                "legal-hold",
+                                                "projects",
+                                                ":projectId",
+                                                "preserve"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspaceId"
+                                                },
+                                                {
+                                                  "key": "projectId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T02:35:57.000Z",
+                                          "updatedAt": "2026-10-22T02:35:57.000Z",
+                                          "uid": "35240-6bf87fd8-db24-42d2-abc4-b8e88c0163f6"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T02:35:57.000Z",
+                                      "updatedAt": "2026-10-22T02:35:57.000Z",
+                                      "uid": "35240-3604475d-a1cc-43fa-b7c2-f89b7259af30"
+                                    }
+                                  ],
+                                  "id": "7182ba0c-2fb0-4727-9e55-da307b9762c1",
+                                  "createdAt": "2026-10-22T02:35:57.000Z",
+                                  "updatedAt": "2026-10-22T02:35:57.000Z",
+                                  "uid": "35240-7182ba0c-2fb0-4727-9e55-da307b9762c1"
+                                },
+                                {
+                                  "name": "release",
+                                  "item": [
+                                    {
+                                      "name": "Release Custodian from Project",
+                                      "id": "c3e6e1ba-317a-44fd-910d-879e0f46f623",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/release",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "relativity-environment",
+                                            "v1",
+                                            "workspaces",
+                                            ":workspaceId",
+                                            "legal-hold",
+                                            "projects",
+                                            ":projectId",
+                                            "release"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "dc518684-7cdd-420d-b197-5882c7457533",
+                                              "key": "workspaceId",
+                                              "value": "<integer>",
+                                              "description": "(Required) The artifact ID of the workspace."
+                                            },
+                                            {
+                                              "id": "6f93e08f-d15a-42bd-8b6b-092c73c97e1f",
+                                              "key": "projectId",
+                                              "value": "<integer>",
+                                              "description": "(Required) The artifact ID of the legal hold project."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Releases one or more custodians from a legal hold project and their data sources."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "e6440c43-2c00-43b2-9c19-5afb0a26c5be",
+                                          "name": "Custodians released successfully.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId/release",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "relativity-environment",
+                                                "v1",
+                                                "workspaces",
+                                                ":workspaceId",
+                                                "legal-hold",
+                                                "projects",
+                                                ":projectId",
+                                                "release"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspaceId"
+                                                },
+                                                {
+                                                  "key": "projectId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T02:35:57.000Z",
+                                          "updatedAt": "2026-10-22T02:35:57.000Z",
+                                          "uid": "35240-e6440c43-2c00-43b2-9c19-5afb0a26c5be"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T02:35:57.000Z",
+                                      "updatedAt": "2026-10-22T02:35:57.000Z",
+                                      "uid": "35240-c3e6e1ba-317a-44fd-910d-879e0f46f623"
+                                    }
+                                  ],
+                                  "id": "03c16a26-7fe0-49d5-a931-12ff0ad7519b",
+                                  "createdAt": "2026-10-22T02:35:57.000Z",
+                                  "updatedAt": "2026-10-22T02:35:57.000Z",
+                                  "uid": "35240-03c16a26-7fe0-49d5-a931-12ff0ad7519b"
+                                }
+                              ],
+                              "id": "69d436a8-2194-4d55-8c84-36cae73dc94e",
+                              "createdAt": "2026-10-22T02:35:57.000Z",
+                              "updatedAt": "2026-10-22T02:35:57.000Z",
+                              "uid": "35240-69d436a8-2194-4d55-8c84-36cae73dc94e"
+                            }
+                          ],
+                          "id": "15ec452b-6d3e-46da-88df-1ef4d9ba0187",
+                          "createdAt": "2026-10-22T02:35:57.000Z",
+                          "updatedAt": "2026-10-22T02:35:57.000Z",
+                          "uid": "35240-15ec452b-6d3e-46da-88df-1ef4d9ba0187"
+                        }
+                      ],
+                      "id": "b59a1eba-6a6e-49ff-9275-c8300f3b4a29",
+                      "createdAt": "2026-10-22T02:35:57.000Z",
+                      "updatedAt": "2026-10-22T02:35:57.000Z",
+                      "uid": "35240-b59a1eba-6a6e-49ff-9275-c8300f3b4a29"
+                    }
+                  ],
+                  "id": "33ac8b23-e395-4fa9-b657-25ed8f15bdd3",
+                  "createdAt": "2026-10-22T02:35:57.000Z",
+                  "updatedAt": "2026-10-22T02:35:57.000Z",
+                  "uid": "35240-33ac8b23-e395-4fa9-b657-25ed8f15bdd3"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "e8ac5beb-7519-4b0f-b1a4-80bae705a360",
+              "createdAt": "2026-10-22T02:35:57.000Z",
+              "updatedAt": "2026-10-22T02:35:57.000Z",
+              "uid": "35240-e8ac5beb-7519-4b0f-b1a4-80bae705a360"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7bb5c6b6-42a7-47c3-ba1f-beb218fbf87e",
-          "name": "Release Custodian from Project",
-          "request": {
-            "name": "Release Custodian from Project",
-            "description": {
-              "content": "Releases one or more custodians from a legal hold project and their data sources.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "relativity-environment",
-                "v1",
-                "workspaces",
-                ":workspaceId",
-                "legal-hold",
-                "projects",
-                ":projectId",
-                "release"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "workspaceId",
-                  "description": "(Required) The artifact ID of the workspace."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "projectId",
-                  "description": "(Required) The artifact ID of the legal hold project."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "45560381-af7c-449e-b15a-4a74aae27736",
-              "name": "Custodians released successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects",
-                    ":projectId",
-                    "release"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "projectId",
-                      "description": "(Required) The artifact ID of the legal hold project."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"custodianIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d457e6c2-41f8-472b-9c68-cbf2b8866b61",
+          "createdAt": "2026-10-22T02:35:57.000Z",
+          "updatedAt": "2026-10-22T02:35:57.000Z",
+          "uid": "35240-d457e6c2-41f8-472b-9c68-cbf2b8866b61"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://relativity.rest/api",
-      "key": "baseUrl"
+      "id": "0fb60ce1-5926-4b1f-ab4c-8b5a095873ed",
+      "createdAt": "2026-10-22T02:35:57.000Z",
+      "updatedAt": "2026-10-22T02:35:57.000Z",
+      "uid": "35240-0fb60ce1-5926-4b1f-ab4c-8b5a095873ed"
     }
   ],
   "auth": {
@@ -295,17 +345,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "10ff708f-8899-45b2-8699-cf9d8493b5c6",
-    "name": "RelativityOne Legal Hold Communications Preservation API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://relativity.rest/api"
     }
-  }
+  ]
 }

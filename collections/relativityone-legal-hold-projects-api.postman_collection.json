@@ -1,757 +1,754 @@
 {
+  "info": {
+    "_postman_id": "3b4ff9aa-6713-4958-8880-30e76b446af2",
+    "name": "RelativityOne Legal Hold Legal Hold Projects API",
+    "description": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:35:50.000Z",
+    "updatedAt": "2026-10-22T02:35:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3b4ff9aa-6713-4958-8880-30e76b446af2"
+  },
   "item": [
     {
-      "id": "b6f56ffb-942b-4b11-bed2-56d49c6438bd",
-      "name": "Legal Hold Projects",
-      "description": {
-        "content": "Operations for managing legal hold projects",
-        "type": "text/plain"
-      },
+      "name": "relativity-environment",
       "item": [
         {
-          "id": "edda282f-be1d-42da-a94c-f502be286ea4",
-          "name": "List Legal Hold Projects",
-          "request": {
-            "name": "List Legal Hold Projects",
-            "description": {
-              "content": "Retrieves a list of legal hold projects in the specified workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "relativity-environment",
-                "v1",
-                "workspaces",
-                ":workspaceId",
-                "legal-hold",
-                "projects"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "start",
-                  "value": "0",
-                  "description": "The starting index for pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "length",
-                  "value": "25",
-                  "description": "The number of records to return."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "workspaceId",
-                  "description": "(Required) The artifact ID of the workspace."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "c41a525d-746f-40a7-a12a-79b96c21e1bd",
-              "name": "List of legal hold projects returned successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "start",
-                      "value": "0"
-                    },
-                    {
-                      "key": "length",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "workspaces",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{workspaceId}",
+                  "item": [
+                    {
+                      "name": "legal-hold",
+                      "item": [
+                        {
+                          "name": "projects",
+                          "item": [
+                            {
+                              "name": "{projectId}",
+                              "item": [
+                                {
+                                  "name": "Get Legal Hold Project",
+                                  "id": "018008c4-a030-4705-b7b5-197186ace104",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects",
+                                        ":projectId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "cbe59884-9842-42e8-9be5-64bf98779f13",
+                                          "key": "workspaceId",
+                                          "value": "<integer>",
+                                          "description": "(Required) The artifact ID of the workspace."
+                                        },
+                                        {
+                                          "id": "2ca39fb8-f3ad-4c0f-880f-e8e3d174d16a",
+                                          "key": "projectId",
+                                          "value": "<integer>",
+                                          "description": "(Required) The artifact ID of the legal hold project."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieves a specific legal hold project by its artifact ID."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c34ae30e-3567-47c9-90c7-410b99b9d600",
+                                      "name": "Legal hold project retrieved successfully.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "relativity-environment",
+                                            "v1",
+                                            "workspaces",
+                                            ":workspaceId",
+                                            "legal-hold",
+                                            "projects",
+                                            ":projectId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspaceId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"artifactId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"Closed\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-10-22T02:35:51.000Z",
+                                      "updatedAt": "2026-10-22T02:35:51.000Z",
+                                      "uid": "35240-c34ae30e-3567-47c9-90c7-410b99b9d600"
+                                    },
+                                    {
+                                      "id": "564a7f20-9320-45d6-87d1-b06308fed06d",
+                                      "name": "Project not found.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects/:projectId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "relativity-environment",
+                                            "v1",
+                                            "workspaces",
+                                            ":workspaceId",
+                                            "legal-hold",
+                                            "projects",
+                                            ":projectId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspaceId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T02:35:51.000Z",
+                                      "updatedAt": "2026-10-22T02:35:51.000Z",
+                                      "uid": "35240-564a7f20-9320-45d6-87d1-b06308fed06d"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-018008c4-a030-4705-b7b5-197186ace104"
+                                }
+                              ],
+                              "id": "5bfe21e6-3775-45c2-8476-a2d499cfd124",
+                              "createdAt": "2026-10-22T02:35:51.000Z",
+                              "updatedAt": "2026-10-22T02:35:51.000Z",
+                              "uid": "35240-5bfe21e6-3775-45c2-8476-a2d499cfd124"
+                            },
+                            {
+                              "name": "List Legal Hold Projects",
+                              "id": "e5fd13f2-0b8f-419c-8bab-8800c4df0be6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects?start=0&length=25",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "relativity-environment",
+                                    "v1",
+                                    "workspaces",
+                                    ":workspaceId",
+                                    "legal-hold",
+                                    "projects"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The starting index for pagination.",
+                                      "key": "start",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "The number of records to return.",
+                                      "key": "length",
+                                      "value": "25"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6c10a28a-622e-4fd5-af35-aee907fc518a",
+                                      "key": "workspaceId",
+                                      "value": "<integer>",
+                                      "description": "(Required) The artifact ID of the workspace."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves a list of legal hold projects in the specified workspace."
+                              },
+                              "response": [
+                                {
+                                  "id": "9bce6bb6-2d7b-46fa-8764-8ac7ba89b817",
+                                  "name": "List of legal hold projects returned successfully.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects?start=0&length=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The starting index for pagination.",
+                                          "key": "start",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "The number of records to return.",
+                                          "key": "length",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"results\": [\n    {\n      \"artifactId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"status\": \"Active\",\n      \"ownerEmailAddress\": \"<email>\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    },\n    {\n      \"artifactId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"status\": \"Draft\",\n      \"ownerEmailAddress\": \"<email>\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-9bce6bb6-2d7b-46fa-8764-8ac7ba89b817"
+                                },
+                                {
+                                  "id": "d82157b5-a37b-4eaf-87bc-ccad98ba171a",
+                                  "name": "Bad request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects?start=0&length=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The starting index for pagination.",
+                                          "key": "start",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "The number of records to return.",
+                                          "key": "length",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-d82157b5-a37b-4eaf-87bc-ccad98ba171a"
+                                },
+                                {
+                                  "id": "f68e7606-2000-455b-abf6-e4f77d7f3fff",
+                                  "name": "Unauthorized.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects?start=0&length=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The starting index for pagination.",
+                                          "key": "start",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "The number of records to return.",
+                                          "key": "length",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-f68e7606-2000-455b-abf6-e4f77d7f3fff"
+                                },
+                                {
+                                  "id": "efeac3f7-f2ae-4054-b306-565533f9bd34",
+                                  "name": "Forbidden.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects?start=0&length=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The starting index for pagination.",
+                                          "key": "start",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "The number of records to return.",
+                                          "key": "length",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-efeac3f7-f2ae-4054-b306-565533f9bd34"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:35:51.000Z",
+                              "updatedAt": "2026-10-22T02:35:51.000Z",
+                              "uid": "35240-e5fd13f2-0b8f-419c-8bab-8800c4df0be6"
+                            },
+                            {
+                              "name": "Create Legal Hold Project",
+                              "id": "03712b7b-9c74-4496-b405-981055363333",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "relativity-environment",
+                                    "v1",
+                                    "workspaces",
+                                    ":workspaceId",
+                                    "legal-hold",
+                                    "projects"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "875f4acd-269d-41a1-b560-4a2dedb13bd6",
+                                      "key": "workspaceId",
+                                      "value": "<integer>",
+                                      "description": "(Required) The artifact ID of the workspace."
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new legal hold project in the specified workspace."
+                              },
+                              "response": [
+                                {
+                                  "id": "75fcdfdb-3d2d-4b46-978a-cfcd251f0fa1",
+                                  "name": "Legal hold project created successfully.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"artifactId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"Closed\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-75fcdfdb-3d2d-4b46-978a-cfcd251f0fa1"
+                                },
+                                {
+                                  "id": "3a859423-2a73-42bf-9420-de45b7f76588",
+                                  "name": "Bad request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-3a859423-2a73-42bf-9420-de45b7f76588"
+                                },
+                                {
+                                  "id": "332bb226-da8a-4658-bd5a-9b4c0c8b43a7",
+                                  "name": "Unauthorized.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/relativity-environment/v1/workspaces/:workspaceId/legal-hold/projects",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "relativity-environment",
+                                        "v1",
+                                        "workspaces",
+                                        ":workspaceId",
+                                        "legal-hold",
+                                        "projects"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspaceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:35:51.000Z",
+                                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                                  "uid": "35240-332bb226-da8a-4658-bd5a-9b4c0c8b43a7"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:35:51.000Z",
+                              "updatedAt": "2026-10-22T02:35:51.000Z",
+                              "uid": "35240-03712b7b-9c74-4496-b405-981055363333"
+                            }
+                          ],
+                          "id": "8c5464f0-86a2-4bed-a1a7-974d87fd8bf8",
+                          "createdAt": "2026-10-22T02:35:51.000Z",
+                          "updatedAt": "2026-10-22T02:35:51.000Z",
+                          "uid": "35240-8c5464f0-86a2-4bed-a1a7-974d87fd8bf8"
+                        }
+                      ],
+                      "id": "157afcd8-427e-43c6-bff0-08d96042fbc3",
+                      "createdAt": "2026-10-22T02:35:51.000Z",
+                      "updatedAt": "2026-10-22T02:35:51.000Z",
+                      "uid": "35240-157afcd8-427e-43c6-bff0-08d96042fbc3"
+                    }
+                  ],
+                  "id": "0fc3a48a-1262-46d2-967b-933a80328984",
+                  "createdAt": "2026-10-22T02:35:51.000Z",
+                  "updatedAt": "2026-10-22T02:35:51.000Z",
+                  "uid": "35240-0fc3a48a-1262-46d2-967b-933a80328984"
                 }
               ],
-              "body": "{\n  \"results\": [\n    {\n      \"artifactId\": 3731,\n      \"name\": \"string\",\n      \"status\": \"Closed\",\n      \"ownerEmailAddress\": \"tzHNK@Msw.zgk\",\n      \"description\": \"string\",\n      \"createdDate\": \"1988-04-25T05:19:25.726Z\",\n      \"modifiedDate\": \"2004-01-02T16:03:21.199Z\"\n    },\n    {\n      \"artifactId\": 8219,\n      \"name\": \"string\",\n      \"status\": \"Draft\",\n      \"ownerEmailAddress\": \"XSl67RYvHQ@FisnedPYoqNkpQnC.vd\",\n      \"description\": \"string\",\n      \"createdDate\": \"1974-09-13T18:57:35.662Z\",\n      \"modifiedDate\": \"2026-02-05T09:05:08.751Z\"\n    }\n  ],\n  \"totalCount\": 9141\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4748e026-0b8b-43e4-89d6-b6ddda5e4bb5",
-              "name": "Bad request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "start",
-                      "value": "0"
-                    },
-                    {
-                      "key": "length",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2913c332-2911-4ec9-adc3-2fa1c3c7b36e",
-              "name": "Unauthorized.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "start",
-                      "value": "0"
-                    },
-                    {
-                      "key": "length",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "62d82843-a705-49cb-a6b6-a7f2e5f3fe70",
-              "name": "Forbidden.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "start",
-                      "value": "0"
-                    },
-                    {
-                      "key": "length",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "76ce03cc-91aa-4102-8bb1-8781390736ac",
+              "createdAt": "2026-10-22T02:35:51.000Z",
+              "updatedAt": "2026-10-22T02:35:51.000Z",
+              "uid": "35240-76ce03cc-91aa-4102-8bb1-8781390736ac"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cc2f4be6-c043-4042-88e6-a9f56e059e72",
-          "name": "Create Legal Hold Project",
-          "request": {
-            "name": "Create Legal Hold Project",
-            "description": {
-              "content": "Creates a new legal hold project in the specified workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "relativity-environment",
-                "v1",
-                "workspaces",
-                ":workspaceId",
-                "legal-hold",
-                "projects"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "workspaceId",
-                  "description": "(Required) The artifact ID of the workspace."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4e0120da-1526-411b-a0c1-9dd3570171f4",
-              "name": "Legal hold project created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"artifactId\": 8113,\n  \"name\": \"string\",\n  \"status\": \"Draft\",\n  \"ownerEmailAddress\": \"KN7w@qqcLKhTDBNJLUVStwm.dos\",\n  \"description\": \"string\",\n  \"createdDate\": \"1973-03-07T04:58:54.025Z\",\n  \"modifiedDate\": \"2015-01-16T01:49:23.923Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ab76319d-5afe-4742-8b80-f36af51db559",
-              "name": "Bad request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "4412e1e2-c162-4675-a1d6-d37c48b27623",
-              "name": "Unauthorized.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"ownerEmailAddress\": \"<email>\",\n  \"description\": \"<string>\",\n  \"status\": \"Active\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f8637a81-9980-4372-ad5c-8a3038b864b6",
-          "name": "Get Legal Hold Project",
-          "request": {
-            "name": "Get Legal Hold Project",
-            "description": {
-              "content": "Retrieves a specific legal hold project by its artifact ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "relativity-environment",
-                "v1",
-                "workspaces",
-                ":workspaceId",
-                "legal-hold",
-                "projects",
-                ":projectId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "workspaceId",
-                  "description": "(Required) The artifact ID of the workspace."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "projectId",
-                  "description": "(Required) The artifact ID of the legal hold project."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "37e1593d-68db-4f76-835a-6657b7c80600",
-              "name": "Legal hold project retrieved successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects",
-                    ":projectId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "projectId",
-                      "description": "(Required) The artifact ID of the legal hold project."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"artifactId\": 8113,\n  \"name\": \"string\",\n  \"status\": \"Draft\",\n  \"ownerEmailAddress\": \"KN7w@qqcLKhTDBNJLUVStwm.dos\",\n  \"description\": \"string\",\n  \"createdDate\": \"1973-03-07T04:58:54.025Z\",\n  \"modifiedDate\": \"2015-01-16T01:49:23.923Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "87a277f2-4571-4b6d-884f-d42a2b91b681",
-              "name": "Project not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "relativity-environment",
-                    "v1",
-                    "workspaces",
-                    ":workspaceId",
-                    "legal-hold",
-                    "projects",
-                    ":projectId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "workspaceId",
-                      "description": "(Required) The artifact ID of the workspace."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "projectId",
-                      "description": "(Required) The artifact ID of the legal hold project."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "64b94351-c58e-4f42-ae2d-2c579bd465d6",
+          "createdAt": "2026-10-22T02:35:51.000Z",
+          "updatedAt": "2026-10-22T02:35:51.000Z",
+          "uid": "35240-64b94351-c58e-4f42-ae2d-2c579bd465d6"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://relativity.rest/api",
-      "key": "baseUrl"
+      "id": "b30b23b5-57ef-461c-ac11-558a990e9a20",
+      "createdAt": "2026-10-22T02:35:51.000Z",
+      "updatedAt": "2026-10-22T02:35:51.000Z",
+      "uid": "35240-b30b23b5-57ef-461c-ac11-558a990e9a20"
     }
   ],
   "auth": {
@@ -759,17 +756,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f2926e48-7f76-4766-851f-867b7b166f9d",
-    "name": "RelativityOne Legal Hold Communications Legal Hold Projects API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Legal Hold API enables matter and project management integration with external systems such as matter management platforms and HR systems. It provides endpoints for custodian management, preservation workflows, task tracking, entity management, and communication configuration. Authentication is handled via Microsoft Graph API.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://relativity.rest/api"
     }
-  }
+  ]
 }
